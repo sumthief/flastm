@@ -1,4 +1,3 @@
-* Write tests for internal ```makeRequest``` function
 * Test implemented 'GET' methods
 * Implement auth methods
 * Implement POST methods for all categories

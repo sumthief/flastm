@@ -1,14 +1,22 @@
-const config = require('../../config');
 const axios = require('axios');
+const config = require('../../config');
 
-export const makeRequest = opts => {
-  const { method = 'get', pkg, action, ...extraOpts } = opts;
+/**
+ * Main method for make Last.fm API specific request.
+ * @param {'get'|'post'} method - HTTP request`s method.
+ * @param {string} pkg - Last.fm API`s package. Allowed values: album, artist, auth, chart, geo, library, tag, track, user.
+ * @param {string} action - Method (action to do) for specified package. Examples: getInfo, getTopTrack, getCorrection, etc.
+ * @param {object} opts - Extra options such as lang, username, autocorrect and others.
+ * @returns {Promise} - Promise formed by axios.
+ */
+export const makeRequest = ({method = 'get', pkg, action, ...opts}) => {
   let data = {
     format: 'json',
     method: `${pkg}.${action}`,
-    api_key: config.api_key
+    api_key: config.api_key,
+    ...opts
   };
-  Object.keys(extraOpts).forEach(key => (data[key] = extraOpts[key]));
+  // Wrap data in axios 'get' request`s compatible format.
   if (method.toLowerCase() === 'get') {
     data = { params: data };
   }
