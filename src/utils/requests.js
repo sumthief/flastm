@@ -6,7 +6,7 @@ const config = require('../../config');
  * @param {'get'|'post'} method - HTTP request`s method.
  * @param {string} pkg - Last.fm API`s package. Allowed values: album, artist, auth, chart, geo, library, tag, track, user.
  * @param {string} action - Method (action to do) for specified package. Examples: getInfo, getTopTrack, getCorrection, etc.
- * @param {object} opts - Extra options such as lang, username, autocorrect and others.
+ * @param {*} opts - Extra options such as lang, username, autocorrect and others.
  * @returns {Promise} - Promise formed by axios.
  */
 export const makeRequest = ({method = 'get', pkg, action, ...opts}) => {

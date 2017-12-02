@@ -1,5 +1,4 @@
-const requests = require('../utils/requests');
-const fetch = requests.makeRequest;
+const fetch = require('../utils/requests').makeRequest;
 
 const defaultParams = { pkg: 'user' };
 
