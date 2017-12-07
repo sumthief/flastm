@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../../config');
+const generateApiSignature = require('../utils/auth').generateApiSignature;
 
 /**
  * Main method for make Last.fm API specific request.
@@ -10,12 +11,17 @@ const config = require('../../config');
  * @returns {Promise} - Promise formed by axios.
  */
 export const makeRequest = ({method = 'get', pkg, action, ...opts}) => {
+  const apiMethod = `${pkg}.${action}`;
   let data = {
     format: 'json',
-    method: `${pkg}.${action}`,
+    method: apiMethod,
     api_key: config.api_key,
     ...opts
   };
+  // For getSession we also need api signature.
+  if (apiMethod === 'auth.getSession' && data['token']) {
+    data['api_sig'] = generateApiSignature(data);
+  }
   // Wrap data in axios 'get' request`s compatible format.
   if (method.toLowerCase() === 'get') {
     data = { params: data };

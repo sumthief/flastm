@@ -1,0 +1,39 @@
+const crypto = require('crypto');
+const qs = require('querystring');
+const config = require('../../config');
+
+/**
+ * Create md5 hash.
+ * @param {string} data - String to hash.
+ * @returns {string} - md5 hashed string.
+ */
+const createMD5Hash = data => {
+    const hash = crypto.createHash('md5');
+    return hash
+        .update(data)
+        .digest()
+        .toString('hex');
+};
+
+/**
+ * Generate API signature for auth requests.
+ * @param {Array<string>} params - Query data params.
+ * @returns {string} - Valid API signature.
+ */
+const generateApiSignature = params => {
+    const excludedKeys = ['format', 'callback'];
+    // Sort keys in alphabet order and handle all keys except excluded.
+    const baseSignature = Object.keys(params)
+        .sort()
+        .reduce((prev, key) => {
+            if (params.hasOwnProperty(key) && !excludedKeys.includes(key)) {
+                prev += `${key}${qs.escape(params[key])}`;
+            }
+            return prev;
+        }, '');
+    return createMD5Hash(`${baseSignature}${config.secret}`);
+};
+
+module.exports = {
+  generateApiSignature
+};
