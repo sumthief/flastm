@@ -16,5 +16,7 @@ module.exports = {
     getTopAlbums: (artist, opts = {}) => fetch({...defaultParams, action: 'getTopAlbums', artist, ...opts}),
     getTopTracksByMbid: (mbid, opts = {}) => fetch({...defaultParams, action: 'getTopTracks', mbid, ...opts}),
     getTopTracks: (artist, opts = {}) => fetch({...defaultParams, action: 'getTopTracks', artist, ...opts}),
-    search: (artist, opts = {}) => fetch({...defaultParams, action: 'search', artist, ...opts})
+    search: (artist, opts = {}) => fetch({...defaultParams, action: 'search', artist, ...opts}),
+    addTags: (artist, tags, sk) => fetch({...defaultParams, action: 'addTags', artist, tags, sk, method: 'post'}),
+    removeTag: (artist, tag, sk) => fetch({...defaultParams, action: 'removeTag', artist, tag, sk, method: 'post'})
 };
