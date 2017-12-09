@@ -1,6 +1,9 @@
 const crypto = require('crypto');
 const qs = require('querystring');
 const config = require('../../config');
+const StringDecoder = require('string_decoder').StringDecoder;
+
+const utf8StringDecoder = new StringDecoder('utf8');
 
 /**
  * Create md5 hash.
@@ -17,7 +20,7 @@ const createMD5Hash = data => {
 
 /**
  * Generate API signature for auth requests.
- * @param {Array<string>} params - Query data params.
+ * @param {Object} params - Query data params.
  * @returns {string} - Valid API signature.
  */
 const generateApiSignature = params => {
@@ -27,7 +30,7 @@ const generateApiSignature = params => {
         .sort()
         .reduce((prev, key) => {
             if (params.hasOwnProperty(key) && !excludedKeys.includes(key)) {
-                prev += `${key}${qs.escape(params[key])}`;
+                prev += `${key}${utf8StringDecoder.end(params[key])}`;
             }
             return prev;
         }, '');

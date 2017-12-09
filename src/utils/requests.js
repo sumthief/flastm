@@ -1,4 +1,5 @@
 const axios = require('axios');
+const qs = require('querystring');
 const config = require('../../config');
 const generateApiSignature = require('../utils/auth').generateApiSignature;
 
@@ -7,11 +8,13 @@ const generateApiSignature = require('../utils/auth').generateApiSignature;
  * @param {'get'|'post'} method - HTTP request`s method.
  * @param {string} pkg - Last.fm API`s package. Allowed values: album, artist, auth, chart, geo, library, tag, track, user.
  * @param {string} action - Method (action to do) for specified package. Examples: getInfo, getTopTrack, getCorrection, etc.
+ * @param {boolean} sign - Flag which say if we need to sign this method.
  * @param {*} opts - Extra options such as lang, username, autocorrect and others.
  * @returns {Promise} - Promise formed by axios.
  */
-export const makeRequest = ({method = 'get', pkg, action, ...opts}) => {
+export const makeRequest = ({method = 'get',pkg, action, sign = false, ...opts}) => {
   const apiMethod = `${pkg}.${action}`;
+  const isMethodGet = method.toLowerCase() === 'get';
   let data = {
     format: 'json',
     method: apiMethod,
@@ -19,12 +22,20 @@ export const makeRequest = ({method = 'get', pkg, action, ...opts}) => {
     ...opts
   };
   // For getSession we also need api signature.
-  if (apiMethod === 'auth.getSession' && data['token']) {
+  if (sign) {
     data['api_sig'] = generateApiSignature(data);
   }
-  // Wrap data in axios 'get' request`s compatible format.
-  if (method.toLowerCase() === 'get') {
-    data = { params: data };
+
+  const requestConfig = {
+      method,
+      url: 'http://ws.audioscrobbler.com/2.0/'
+  };
+    // Prepare request config in dependency of request method.
+  if (isMethodGet) {
+      requestConfig['params'] = data;
+  } else {
+      requestConfig['data'] = qs.stringify(data);
+      requestConfig['headers'] = {'Content-Type': 'application/x-www-form-urlencoded'}
   }
-  return axios[method]('http://ws.audioscrobbler.com/2.0/', data);
+  return axios(requestConfig);
 };
