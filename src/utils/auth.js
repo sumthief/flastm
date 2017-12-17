@@ -34,7 +34,7 @@ const generateApiSignature = params => {
             }
             return prev;
         }, '');
-    return createMD5Hash(`${baseSignature}${config.secret}`);
+    return createMD5Hash(`${baseSignature}${config.auth_web.secret}`);
 };
 
 module.exports = {
