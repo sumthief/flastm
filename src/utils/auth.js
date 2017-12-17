@@ -3,6 +3,8 @@ const qs = require('querystring');
 const config = require('../../config');
 const StringDecoder = require('string_decoder').StringDecoder;
 
+const EXCLUDED_KEYS = ['format', 'callback'];
+
 const utf8StringDecoder = new StringDecoder('utf8');
 
 /**
@@ -24,17 +26,16 @@ const createMD5Hash = data => {
  * @returns {string} - Valid API signature.
  */
 const generateApiSignature = params => {
-    const excludedKeys = ['format', 'callback'];
     // Sort keys in alphabet order and handle all keys except excluded.
     const baseSignature = Object.keys(params)
         .sort()
         .reduce((prev, key) => {
-            if (params.hasOwnProperty(key) && !excludedKeys.includes(key)) {
+            if (params.hasOwnProperty(key) && !EXCLUDED_KEYS.includes(key)) {
                 prev += `${key}${utf8StringDecoder.end(params[key])}`;
             }
             return prev;
         }, '');
-    return createMD5Hash(`${baseSignature}${config.auth_web.secret}`);
+    return createMD5Hash(`${baseSignature}${config.secret}`);
 };
 
 module.exports = {

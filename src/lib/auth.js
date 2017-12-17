@@ -1,6 +1,6 @@
 const fetch = require('../utils/requests').makeRequest;
 
-const config = require('../../config');
+const { password, username } = require('../../config');
 
 const defaultParams = { pkg: 'auth' };
 
@@ -11,9 +11,9 @@ module.exports = {
     getMobileSession: () =>
         fetch({
             ...defaultParams,
+            password,
+            username,
             action: 'getMobileSession',
-            password: config.auth_mobile.password,
-            username: config.auth_mobile.username,
             method: 'post',
             sign: true,
             https: true

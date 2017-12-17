@@ -1,7 +1,10 @@
 const axios = require('axios');
 const qs = require('querystring');
-const config = require('../../config');
+const { api_key } = require('../../config');
 const generateApiSignature = require('../utils/auth').generateApiSignature;
+
+const RESPONSE_FORMAT = 'json';
+const REQUEST_BASE_URL = '//ws.audioscrobbler.com/2.0/';
 
 /**
  * Main method for make Last.fm API specific request.
@@ -24,12 +27,12 @@ export const makeRequest = ({
     const apiMethod = `${pkg}.${action}`;
     const isMethodGet = method.toLowerCase() === 'get';
     let data = {
-        format: 'json',
+        api_key,
+        format: RESPONSE_FORMAT,
         method: apiMethod,
-        api_key: config.api_key,
         ...opts
     };
-    // For getSession we also need api signature.
+    // For signed methods we need additional param - api_sig.
     if (sign) {
         data['api_sig'] = generateApiSignature(data);
     }
@@ -37,7 +40,7 @@ export const makeRequest = ({
     const schema = https ? 'https' : 'http';
     const requestConfig = {
         method,
-        url: `${schema}://ws.audioscrobbler.com/2.0/`
+        url: `${schema}:${REQUEST_BASE_URL}`
     };
     // Prepare request config in dependency of request method.
     if (isMethodGet) {
