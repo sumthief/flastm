@@ -13,31 +13,40 @@ const generateApiSignature = require('../utils/auth').generateApiSignature;
  * @param {*} opts - Extra options such as lang, username, autocorrect and others.
  * @returns {Promise} - Promise formed by axios.
  */
-export const makeRequest = ({method = 'get',pkg, action, sign = false, https = false, ...opts}) => {
-  const apiMethod = `${pkg}.${action}`;
-  const isMethodGet = method.toLowerCase() === 'get';
-  let data = {
-    format: 'json',
-    method: apiMethod,
-    api_key: config.api_key,
+export const makeRequest = ({
+    method = 'get',
+    pkg,
+    action,
+    sign = false,
+    https = false,
     ...opts
-  };
-  // For getSession we also need api signature.
-  if (sign) {
-    data['api_sig'] = generateApiSignature(data);
-  }
+}) => {
+    const apiMethod = `${pkg}.${action}`;
+    const isMethodGet = method.toLowerCase() === 'get';
+    let data = {
+        format: 'json',
+        method: apiMethod,
+        api_key: config.api_key,
+        ...opts
+    };
+    // For getSession we also need api signature.
+    if (sign) {
+        data['api_sig'] = generateApiSignature(data);
+    }
 
-  const schema = https ? 'https' : 'http';
-  const requestConfig = {
-      method,
-      url: `${schema}://ws.audioscrobbler.com/2.0/`
-  };
+    const schema = https ? 'https' : 'http';
+    const requestConfig = {
+        method,
+        url: `${schema}://ws.audioscrobbler.com/2.0/`
+    };
     // Prepare request config in dependency of request method.
-  if (isMethodGet) {
-      requestConfig['params'] = data;
-  } else {
-      requestConfig['data'] = qs.stringify(data);
-      requestConfig['headers'] = {'Content-Type': 'application/x-www-form-urlencoded'}
-  }
-  return axios(requestConfig);
+    if (isMethodGet) {
+        requestConfig['params'] = data;
+    } else {
+        requestConfig['data'] = qs.stringify(data);
+        requestConfig['headers'] = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+    }
+    return axios(requestConfig);
 };

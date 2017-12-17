@@ -9,13 +9,13 @@ const track = require('./lib/track');
 const user = require('./lib/user');
 
 module.exports = {
-  album,
-  artist,
-  auth,
-  chart,
-  geo,
-  library,
-  tag,
-  track,
-  user
+    album,
+    artist,
+    auth,
+    chart,
+    geo,
+    library,
+    tag,
+    track,
+    user
 };

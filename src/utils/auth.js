@@ -38,5 +38,5 @@ const generateApiSignature = params => {
 };
 
 module.exports = {
-  generateApiSignature
+    generateApiSignature
 };
