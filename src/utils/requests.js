@@ -51,5 +51,25 @@ export const makeRequest = ({
             'Content-Type': 'application/x-www-form-urlencoded'
         };
     }
-    return axios(requestConfig);
+    return handleResult(axios(requestConfig));
+};
+
+/**
+ * We can get 3 scenarios in work with API:
+ *  - something gonna wrong with server - 4xx, 5xx status codes
+ *  - 2xx status codes and valid result if all is OK
+ *  - 2xx status codes and error in data if request params point invalid data.
+ * So this function is a wrapper under axios' promises which manipulate data
+ * to reject request with 2xx status code and error containing data.
+ * @param {Promise} promise - axios' promise
+ * @returns {Promise<*>} - Wrapping promise which manipulates data in right way
+ */
+const handleResult = promise => {
+  return new Promise((resolve, reject) => {
+      promise
+          .then(res => res.data)
+          // @todo: Rejected data can be inconsistent with failed request data.
+          .then(res => res.error ? reject(res) : resolve(res))
+          .catch(err => reject(err));
+  });
 };
