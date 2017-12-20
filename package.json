@@ -19,6 +19,6 @@
   "scripts": {
     "build": "gulp build",
     "watch": "gulp watch",
-    "test": "jest"
+    "test": "jest --config=jest.config.js"
   }
 }

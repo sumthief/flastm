@@ -1,8 +1,16 @@
-export const ALBUM_MBID_EXAMPLE = '326936d7-feec-48d5-bb9f-286552c1f804';
-export const ARTIST_EXAMPLE = 'breaking benjamin';
-export const ALBUM_EXAMPLE = 'phobia';
+export const VALID_EXAMPLES = {
+    artist: 'breaking benjamin',
+    album: 'phobia',
+    mbid: '326936d7-feec-48d5-bb9f-286552c1f804'
+};
 
-export const convertDataToMock = (data) => {
+export const INVALID_EXAMPLES = {
+    artist: 'broaking benjamin',
+    album: 'phobia',
+    mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+};
+
+export const convertDataToMock = data => {
     const type = typeof data;
     switch (type) {
         case 'string':
@@ -19,31 +27,35 @@ export const convertDataToMock = (data) => {
             } else if (Array.isArray(data)) {
                 return [];
             } else {
-                Object.keys(data).forEach(item => data[item] = convertDataToMock(data[item]));
+                Object.keys(data).forEach(
+                    item => (data[item] = convertDataToMock(data[item]))
+                );
                 return data;
             }
     }
 };
 
 export const ALBUM_VALID_MOCK = {
-    "album": {
-        "name": "",
-        "artist": "",
-        "mbid": "",
-        "url": "",
-        "image": [],
-        "listeners": "",
-        "playcount": "",
-        "tracks": {
-            "track": []
+    album: {
+        name: '',
+        artist: '',
+        mbid: '',
+        url: '',
+        image: [],
+        listeners: '',
+        playcount: '',
+        tracks: {
+            track: []
         },
-        "tags": {
-            "tag": []
+        tags: {
+            tag: []
         },
-        "wiki": {
-            "published": "",
-            "summary": "",
-            "content": ""
+        wiki: {
+            published: '',
+            summary: '',
+            content: ''
         }
     }
 };
+
+export const ALBUM_ERROR_MOCK = { error: 0, message: '', links: [] };
