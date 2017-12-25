@@ -35,7 +35,7 @@ export const convertDataToMock = data => {
     }
 };
 
-export const ALBUM_VALID_MOCK = {
+export const ALBUM_VALID_STRUCTURE_MOCK = {
     album: {
         name: '',
         artist: '',
@@ -58,4 +58,8 @@ export const ALBUM_VALID_MOCK = {
     }
 };
 
-export const ALBUM_ERROR_MOCK = { error: 0, message: '', links: [] };
+export const ALBUM_INVALID_STRUCTURE_MOCK = {
+    error: 0,
+    message: '',
+    links: []
+};
