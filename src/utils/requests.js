@@ -65,11 +65,15 @@ export const makeRequest = ({
  * @returns {Promise<*>} - Wrapping promise which manipulates data in right way
  */
 const handleResult = promise => {
-  return new Promise((resolve, reject) => {
-      promise
-          .then(res => res.data)
-          // @todo: Rejected data can be inconsistent with failed request data.
-          .then(res => res.error ? reject(res) : resolve(res))
-          .catch(err => reject(err));
-  });
+    return new Promise((resolve, reject) => {
+        promise
+            .then(res => res.data)
+            .then(res => (res.error ? reject(res) : resolve(res)))
+            .catch(err => {
+                const dataDefined = err.response && err.response.data;
+                dataDefined
+                    ? reject(dataDefined)
+                    : reject({ error: 'Unknown error', payload: err });
+            });
+    });
 };

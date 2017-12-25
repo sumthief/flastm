@@ -58,8 +58,37 @@ export const ALBUM_VALID_STRUCTURE_MOCK = {
     }
 };
 
-export const ALBUM_INVALID_STRUCTURE_MOCK = {
+export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
     links: []
+};
+
+export const BAD_REQUEST_STRUCTURE_MOCK = {
+    error: 0,
+    message: ''
+};
+
+export const ALBUM_TAGS_VALID_STRUCTURE_MOCK = {
+    tags: { '#text': '', '@attr': { artist: '', album: '' } }
+};
+
+export const ALBUM_SEARCH_VALID_STRUCTURE_MOCK = {
+    results: {
+        '@attr': {
+            for: ''
+        },
+        albummatches: {
+            album: []
+        },
+        'opensearch:Query': {
+            '#text': '',
+            role: '',
+            searchTerms: '',
+            startPage: ''
+        },
+        'opensearch:itemsPerPage': '',
+        'opensearch:startIndex': '',
+        'opensearch:totalResults': ''
+    }
 };
