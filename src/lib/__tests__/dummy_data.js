@@ -23,19 +23,31 @@ export const convertDataToMock = data => {
     }
 };
 
+export const ALBUM_DATA_EXAMPLES = {
+    valid: {
+        artist: 'breaking benjamin',
+        album: 'phobia',
+        mbid: '326936d7-feec-48d5-bb9f-286552c1f804'
+    },
+    invalid: {
+        artist: 'broaking benjamin',
+        album: 'phobia',
+        mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    }
+};
+
+export const ARTIST_DATA_EXAMPLES = {
+    valid: {
+        artist: 'breaking benjamin',
+        mbid: '854a1807-025b-42a8-ba8c-2a39717f1d25'
+    },
+    invalid: {
+        artist: 'broaking benjamin',
+        mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    }
+};
+
 export const ALBUM_VALID_MOCKS = {};
-
-export const VALID_EXAMPLES = {
-    artist: 'breaking benjamin',
-    album: 'phobia',
-    mbid: '326936d7-feec-48d5-bb9f-286552c1f804'
-};
-
-export const INVALID_EXAMPLES = {
-    artist: 'broaking benjamin',
-    album: 'phobia',
-    mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-};
 
 ALBUM_VALID_MOCKS['album'] = {
     album: {
@@ -82,6 +94,62 @@ ALBUM_VALID_MOCKS['search'] = {
         'opensearch:startIndex': '',
         'opensearch:totalResults': ''
     }
+};
+
+export const ARTIST_VALID_MOCKS = {};
+
+ARTIST_VALID_MOCKS['correction'] = {
+    corrections: {
+        correction: {
+            '@attr': { index: '' },
+            artist: { mbid: '', name: '', url: '' }
+        }
+    }
+};
+
+ARTIST_VALID_MOCKS['correction_empty'] = { corrections: '' };
+
+ARTIST_VALID_MOCKS['artist'] = {
+    artist: {
+        name: '',
+        mbid: '',
+        url: '',
+        image: [],
+        streamable: '',
+        ontour: '',
+        stats: { listeners: '', playcount: '' },
+        similar: { artist: [] },
+        tags: { tag: [] },
+        bio: {
+            links: { link: { '#text': '', rel: '', href: '' } },
+            published: '',
+            summary: '',
+            content: ''
+        }
+    }
+};
+
+ARTIST_VALID_MOCKS['artist_empty'] = {
+    artist: {
+        name: '',
+        url: '',
+        image: [],
+        streamable: '',
+        ontour: '',
+        stats: { listeners: '', playcount: '' },
+        similar: { artist: [] },
+        tags: { tag: [] },
+        bio: {
+            links: { link: { '#text': '', rel: '', href: '' } },
+            published: '',
+            summary: '',
+            content: ''
+        }
+    }
+};
+
+ARTIST_VALID_MOCKS['similar'] = {
+    similarartists: { artist: [], '@attr': { artist: '' } }
 };
 
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {

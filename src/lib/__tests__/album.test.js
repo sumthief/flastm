@@ -1,13 +1,11 @@
-import { BAD_REQUEST_STRUCTURE_MOCK } from './dummy_data';
-
 const album = require('../album');
 const auth = require('../auth');
 const config = require('../../../config');
 const {
-    VALID_EXAMPLES,
-    INVALID_EXAMPLES,
+    BAD_REQUEST_STRUCTURE_MOCK,
     INVALID_RESPONSE_STRUCTURE_MOCK,
     ALBUM_VALID_MOCKS,
+    ALBUM_DATA_EXAMPLES,
     convertDataToMock
 } = require('./dummy_data');
 
@@ -15,7 +13,10 @@ describe('getInfo method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
-            .getInfo(INVALID_EXAMPLES.artist, INVALID_EXAMPLES.album)
+            .getInfo(
+                ALBUM_DATA_EXAMPLES.invalid.artist,
+                ALBUM_DATA_EXAMPLES.invalid.album
+            )
             .catch(err =>
                 expect(convertDataToMock(err)).toEqual(
                     INVALID_RESPONSE_STRUCTURE_MOCK
@@ -26,7 +27,10 @@ describe('getInfo method', () => {
     test('Should return valid response if data is valid', () => {
         expect.assertions(1);
         return album
-            .getInfo(VALID_EXAMPLES.artist, VALID_EXAMPLES.album)
+            .getInfo(
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album
+            )
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
@@ -46,9 +50,13 @@ describe('getInfo method', () => {
     test('Should return valid response if passed unknown extra opts', () => {
         expect.assertions(1);
         return album
-            .getInfo(VALID_EXAMPLES.artist, VALID_EXAMPLES.album, {
-                nonExistingApiKey: 'extra'
-            })
+            .getInfo(
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album,
+                {
+                    nonExistingApiKey: 'extra'
+                }
+            )
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
@@ -57,9 +65,13 @@ describe('getInfo method', () => {
     test('Should return invalid response if passed api_sig to extra opts', () => {
         expect.assertions(1);
         return album
-            .getInfo(VALID_EXAMPLES.artist, VALID_EXAMPLES.album, {
-                api_sig: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-            })
+            .getInfo(
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album,
+                {
+                    api_sig: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+                }
+            )
             .catch(err => {
                 expect(convertDataToMock(err)).toEqual(
                     BAD_REQUEST_STRUCTURE_MOCK
@@ -72,7 +84,7 @@ describe('getInfoByMbid method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
-            .getInfoByMbid(INVALID_EXAMPLES.mbid)
+            .getInfoByMbid(ALBUM_DATA_EXAMPLES.invalid.mbid)
             .catch(err =>
                 expect(convertDataToMock(err)).toEqual(
                     INVALID_RESPONSE_STRUCTURE_MOCK
@@ -83,7 +95,7 @@ describe('getInfoByMbid method', () => {
     test('Should return valid response if data is valid', () => {
         expect.assertions(1);
         return album
-            .getInfoByMbid(VALID_EXAMPLES.mbid)
+            .getInfoByMbid(ALBUM_DATA_EXAMPLES.valid.mbid)
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
@@ -103,7 +115,7 @@ describe('getInfoByMbid method', () => {
     test('Should return valid response if passed unknown extra opts', () => {
         expect.assertions(1);
         return album
-            .getInfoByMbid(VALID_EXAMPLES.mbid, {
+            .getInfoByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, {
                 nonExistingApiKey: 'extra'
             })
             .then(res =>
@@ -114,7 +126,7 @@ describe('getInfoByMbid method', () => {
     test('Should return invalid response if passed api_sig to extra opts', () => {
         expect.assertions(1);
         return album
-            .getInfoByMbid(VALID_EXAMPLES.mbid, {
+            .getInfoByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, {
                 api_sig: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             })
             .catch(err => {
@@ -129,7 +141,7 @@ describe('getTagsByMbid method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
-            .getTagsByMbid(INVALID_EXAMPLES.mbid)
+            .getTagsByMbid(ALBUM_DATA_EXAMPLES.invalid.mbid)
             .catch(err =>
                 expect(convertDataToMock(err)).toEqual(
                     INVALID_RESPONSE_STRUCTURE_MOCK
@@ -140,7 +152,9 @@ describe('getTagsByMbid method', () => {
     test('Should return valid response if data is valid', () => {
         expect.assertions(1);
         return album
-            .getTagsByMbid(VALID_EXAMPLES.mbid, { user: config.username })
+            .getTagsByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, {
+                user: config.username
+            })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.tags)
             );
@@ -164,7 +178,7 @@ describe('getTagsByMbid method', () => {
             .then(sessionInfo => sessionInfo.session.key)
             .then(sk =>
                 album
-                    .getTagsByMbid(VALID_EXAMPLES.mbid, { sk })
+                    .getTagsByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, { sk })
                     .then(res =>
                         expect(convertDataToMock(res)).toEqual(
                             ALBUM_VALID_MOCKS.tags
@@ -176,7 +190,7 @@ describe('getTagsByMbid method', () => {
     test('Should return invalid response if passed api_sig to extra opts', () => {
         expect.assertions(1);
         return album
-            .getTagsByMbid(VALID_EXAMPLES.mbid, {
+            .getTagsByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, {
                 api_sig: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             })
             .catch(err => {
@@ -191,7 +205,10 @@ describe('getTags method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
-            .getTags(INVALID_EXAMPLES.artist, INVALID_EXAMPLES.album)
+            .getTags(
+                ALBUM_DATA_EXAMPLES.invalid.artist,
+                ALBUM_DATA_EXAMPLES.invalid.album
+            )
             .catch(err =>
                 expect(convertDataToMock(err)).toEqual(
                     INVALID_RESPONSE_STRUCTURE_MOCK
@@ -202,9 +219,13 @@ describe('getTags method', () => {
     test('Should return valid response if data is valid', () => {
         expect.assertions(1);
         return album
-            .getTags(VALID_EXAMPLES.artist, VALID_EXAMPLES.album, {
-                user: config.username
-            })
+            .getTags(
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album,
+                {
+                    user: config.username
+                }
+            )
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.tags)
             );
@@ -228,9 +249,13 @@ describe('getTags method', () => {
             .then(sessionInfo => sessionInfo.session.key)
             .then(sk =>
                 album
-                    .getTags(VALID_EXAMPLES.artist, VALID_EXAMPLES.album, {
-                        sk
-                    })
+                    .getTags(
+                        ALBUM_DATA_EXAMPLES.valid.artist,
+                        ALBUM_DATA_EXAMPLES.valid.album,
+                        {
+                            sk
+                        }
+                    )
                     .then(res =>
                         expect(convertDataToMock(res)).toEqual(
                             ALBUM_VALID_MOCKS.tags
@@ -242,9 +267,13 @@ describe('getTags method', () => {
     test('Should return invalid response if passed api_sig to extra opts', () => {
         expect.assertions(1);
         return album
-            .getTags(VALID_EXAMPLES.artist, VALID_EXAMPLES.album, {
-                api_sig: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-            })
+            .getTags(
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album,
+                {
+                    api_sig: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+                }
+            )
             .catch(err => {
                 expect(convertDataToMock(err)).toEqual(
                     BAD_REQUEST_STRUCTURE_MOCK
@@ -257,7 +286,7 @@ describe('search method', () => {
     test('Should return valid response if passed valid data', () => {
         expect.assertions(1);
         return album
-            .search(VALID_EXAMPLES.album)
+            .search(ALBUM_DATA_EXAMPLES.valid.album)
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.search)
             );
@@ -267,7 +296,7 @@ describe('search method', () => {
         expect.assertions(1);
         const limit = 10;
         return album
-            .search(VALID_EXAMPLES.album, { limit })
+            .search(ALBUM_DATA_EXAMPLES.valid.album, { limit })
             .then(
                 res =>
                     Number(res.results['opensearch:itemsPerPage']) === limit &&
@@ -281,7 +310,7 @@ describe('search method', () => {
         expect.assertions(1);
         const page = 2;
         return album
-            .search(VALID_EXAMPLES.album, { page })
+            .search(ALBUM_DATA_EXAMPLES.valid.album, { page })
             .then(
                 res =>
                     Number(res.results['opensearch:Query']['startPage']) ===
@@ -303,8 +332,8 @@ describe('addTags method', () => {
             .then(sk =>
                 album
                     .addTags(
-                        VALID_EXAMPLES.artist,
-                        VALID_EXAMPLES.album,
+                        ALBUM_DATA_EXAMPLES.valid.artist,
+                        ALBUM_DATA_EXAMPLES.valid.album,
                         'love, rock, alternative, bb',
                         sk
                     )
@@ -316,8 +345,8 @@ describe('addTags method', () => {
         expect.assertions(1);
         return album
             .addTags(
-                VALID_EXAMPLES.artist,
-                VALID_EXAMPLES.album,
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album,
                 'love, rock, alternative, bb',
                 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             )
@@ -339,8 +368,8 @@ describe('removeTag method', () => {
             .then(sk =>
                 album
                     .removeTag(
-                        VALID_EXAMPLES.artist,
-                        VALID_EXAMPLES.album,
+                        ALBUM_DATA_EXAMPLES.valid.artist,
+                        ALBUM_DATA_EXAMPLES.valid.album,
                         'rock',
                         sk
                     )
@@ -352,8 +381,8 @@ describe('removeTag method', () => {
         expect.assertions(1);
         return album
             .removeTag(
-                VALID_EXAMPLES.artist,
-                VALID_EXAMPLES.album,
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album,
                 'love',
                 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             )

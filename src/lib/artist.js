@@ -8,7 +8,7 @@ module.exports = {
     getInfo: (artist, opts = {}) =>
         fetch({ ...defaultParams, action: 'getInfo', artist, ...opts }),
     getInfoByMbid: (mbid, opts = {}) =>
-        fetch({ ...defaultParams, action: 'getInfo', artist, ...opts }),
+        fetch({ ...defaultParams, action: 'getInfo', mbid, ...opts }),
     getSimilar: (artist, opts = {}) =>
         fetch({ ...defaultParams, action: 'getSimilar', artist, ...opts }),
     getSimilarByMbid: (mbid, opts = {}) =>
