@@ -1,15 +1,3 @@
-export const VALID_EXAMPLES = {
-    artist: 'breaking benjamin',
-    album: 'phobia',
-    mbid: '326936d7-feec-48d5-bb9f-286552c1f804'
-};
-
-export const INVALID_EXAMPLES = {
-    artist: 'broaking benjamin',
-    album: 'phobia',
-    mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-};
-
 export const convertDataToMock = data => {
     const type = typeof data;
     switch (type) {
@@ -35,7 +23,21 @@ export const convertDataToMock = data => {
     }
 };
 
-export const ALBUM_VALID_STRUCTURE_MOCK = {
+export const ALBUM_VALID_MOCKS = {};
+
+export const VALID_EXAMPLES = {
+    artist: 'breaking benjamin',
+    album: 'phobia',
+    mbid: '326936d7-feec-48d5-bb9f-286552c1f804'
+};
+
+export const INVALID_EXAMPLES = {
+    artist: 'broaking benjamin',
+    album: 'phobia',
+    mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+};
+
+ALBUM_VALID_MOCKS['album'] = {
     album: {
         name: '',
         artist: '',
@@ -58,22 +60,11 @@ export const ALBUM_VALID_STRUCTURE_MOCK = {
     }
 };
 
-export const INVALID_RESPONSE_STRUCTURE_MOCK = {
-    error: 0,
-    message: '',
-    links: []
+ALBUM_VALID_MOCKS['tags'] = {
+    tags: { '@attr': { album: '', artist: '' }, tag: [] }
 };
 
-export const BAD_REQUEST_STRUCTURE_MOCK = {
-    error: 0,
-    message: ''
-};
-
-export const ALBUM_TAGS_VALID_STRUCTURE_MOCK = {
-    tags: { '#text': '', '@attr': { artist: '', album: '' } }
-};
-
-export const ALBUM_SEARCH_VALID_STRUCTURE_MOCK = {
+ALBUM_VALID_MOCKS['search'] = {
     results: {
         '@attr': {
             for: ''
@@ -91,4 +82,15 @@ export const ALBUM_SEARCH_VALID_STRUCTURE_MOCK = {
         'opensearch:startIndex': '',
         'opensearch:totalResults': ''
     }
+};
+
+export const INVALID_RESPONSE_STRUCTURE_MOCK = {
+    error: 0,
+    message: '',
+    links: []
+};
+
+export const BAD_REQUEST_STRUCTURE_MOCK = {
+    error: 0,
+    message: ''
 };

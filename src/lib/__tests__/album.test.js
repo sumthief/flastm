@@ -6,14 +6,12 @@ const config = require('../../../config');
 const {
     VALID_EXAMPLES,
     INVALID_EXAMPLES,
-    ALBUM_VALID_STRUCTURE_MOCK,
     INVALID_RESPONSE_STRUCTURE_MOCK,
-    ALBUM_TAGS_VALID_STRUCTURE_MOCK,
-    ALBUM_SEARCH_VALID_STRUCTURE_MOCK,
+    ALBUM_VALID_MOCKS,
     convertDataToMock
 } = require('./dummy_data');
 
-describe('getInfo function', () => {
+describe('getInfo method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
@@ -30,9 +28,7 @@ describe('getInfo function', () => {
         return album
             .getInfo(VALID_EXAMPLES.artist, VALID_EXAMPLES.album)
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
     });
 
@@ -54,9 +50,7 @@ describe('getInfo function', () => {
                 nonExistingApiKey: 'extra'
             })
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
     });
 
@@ -74,7 +68,7 @@ describe('getInfo function', () => {
     });
 });
 
-describe('getInfoByMbid function', () => {
+describe('getInfoByMbid method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
@@ -91,9 +85,7 @@ describe('getInfoByMbid function', () => {
         return album
             .getInfoByMbid(VALID_EXAMPLES.mbid)
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
     });
 
@@ -115,9 +107,7 @@ describe('getInfoByMbid function', () => {
                 nonExistingApiKey: 'extra'
             })
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.album)
             );
     });
 
@@ -135,7 +125,7 @@ describe('getInfoByMbid function', () => {
     });
 });
 
-describe('getTagsByMbid function', () => {
+describe('getTagsByMbid method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
@@ -152,9 +142,7 @@ describe('getTagsByMbid function', () => {
         return album
             .getTagsByMbid(VALID_EXAMPLES.mbid, { user: config.username })
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_TAGS_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.tags)
             );
     });
 
@@ -179,7 +167,7 @@ describe('getTagsByMbid function', () => {
                     .getTagsByMbid(VALID_EXAMPLES.mbid, { sk })
                     .then(res =>
                         expect(convertDataToMock(res)).toEqual(
-                            ALBUM_TAGS_VALID_STRUCTURE_MOCK
+                            ALBUM_VALID_MOCKS.tags
                         )
                     )
             );
@@ -199,7 +187,7 @@ describe('getTagsByMbid function', () => {
     });
 });
 
-describe('getTags function', () => {
+describe('getTags method', () => {
     test('Should return invalid response if data is invalid', () => {
         expect.assertions(1);
         return album
@@ -218,9 +206,7 @@ describe('getTags function', () => {
                 user: config.username
             })
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_TAGS_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.tags)
             );
     });
 
@@ -247,7 +233,7 @@ describe('getTags function', () => {
                     })
                     .then(res =>
                         expect(convertDataToMock(res)).toEqual(
-                            ALBUM_TAGS_VALID_STRUCTURE_MOCK
+                            ALBUM_VALID_MOCKS.tags
                         )
                     )
             );
@@ -267,15 +253,13 @@ describe('getTags function', () => {
     });
 });
 
-describe('search function', () => {
+describe('search method', () => {
     test('Should return valid response if passed valid data', () => {
         expect.assertions(1);
         return album
             .search(VALID_EXAMPLES.album)
             .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ALBUM_SEARCH_VALID_STRUCTURE_MOCK
-                )
+                expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.search)
             );
     });
 
@@ -288,7 +272,7 @@ describe('search function', () => {
                 res =>
                     Number(res.results['opensearch:itemsPerPage']) === limit &&
                     expect(convertDataToMock(res)).toEqual(
-                        ALBUM_SEARCH_VALID_STRUCTURE_MOCK
+                        ALBUM_VALID_MOCKS.search
                     )
             );
     });
@@ -303,8 +287,80 @@ describe('search function', () => {
                     Number(res.results['opensearch:Query']['startPage']) ===
                         page &&
                     expect(convertDataToMock(res)).toEqual(
-                        ALBUM_SEARCH_VALID_STRUCTURE_MOCK
+                        ALBUM_VALID_MOCKS.search
                     )
+            );
+    });
+});
+
+describe('addTags method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session)
+            .then(session => session.key)
+            .then(sk =>
+                album
+                    .addTags(
+                        VALID_EXAMPLES.artist,
+                        VALID_EXAMPLES.album,
+                        'love, rock, alternative, bb',
+                        sk
+                    )
+                    .then(res => expect(convertDataToMock(res)).toEqual({}))
+            );
+    });
+
+    test('Should return invalid response if user is not authorized', () => {
+        expect.assertions(1);
+        return album
+            .addTags(
+                VALID_EXAMPLES.artist,
+                VALID_EXAMPLES.album,
+                'love, rock, alternative, bb',
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            )
+            .catch(err =>
+                expect(convertDataToMock(err)).toEqual(
+                    BAD_REQUEST_STRUCTURE_MOCK
+                )
+            );
+    });
+});
+
+describe('removeTag method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session)
+            .then(session => session.key)
+            .then(sk =>
+                album
+                    .removeTag(
+                        VALID_EXAMPLES.artist,
+                        VALID_EXAMPLES.album,
+                        'rock',
+                        sk
+                    )
+                    .then(res => expect(convertDataToMock(res)).toEqual({}))
+            );
+    });
+
+    test('Should return invalid response if user is not authorized', () => {
+        expect.assertions(1);
+        return album
+            .removeTag(
+                VALID_EXAMPLES.artist,
+                VALID_EXAMPLES.album,
+                'love',
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            )
+            .catch(err =>
+                expect(convertDataToMock(err)).toEqual(
+                    BAD_REQUEST_STRUCTURE_MOCK
+                )
             );
     });
 });
