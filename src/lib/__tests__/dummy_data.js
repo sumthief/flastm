@@ -72,8 +72,17 @@ ALBUM_VALID_MOCKS['album'] = {
     }
 };
 
-ALBUM_VALID_MOCKS['tags'] = {
-    tags: { '@attr': { album: '', artist: '' }, tag: [] }
+ALBUM_VALID_MOCKS['album_empty'] = {
+    album: {
+        name: '',
+        artist: '',
+        url: '',
+        image: [],
+        listeners: '',
+        playcount: '',
+        tracks: { track: [] },
+        tags: { tag: [] }
+    }
 };
 
 ALBUM_VALID_MOCKS['search'] = {
@@ -94,6 +103,10 @@ ALBUM_VALID_MOCKS['search'] = {
         'opensearch:startIndex': '',
         'opensearch:totalResults': ''
     }
+};
+
+ALBUM_VALID_MOCKS['tags'] = {
+    tags: { '@attr': { album: '', artist: '' }, tag: [] }
 };
 
 export const ARTIST_VALID_MOCKS = {};
@@ -150,6 +163,54 @@ ARTIST_VALID_MOCKS['artist_empty'] = {
 
 ARTIST_VALID_MOCKS['similar'] = {
     similarartists: { artist: [], '@attr': { artist: '' } }
+};
+
+ARTIST_VALID_MOCKS['tags'] = { tags: { '@attr': { artist: '' }, tag: [] } };
+
+ARTIST_VALID_MOCKS['toptags'] = {
+    toptags: { '@attr': { artist: '' }, tag: [] }
+};
+
+ARTIST_VALID_MOCKS['topalbums'] = {
+    topalbums: {
+        '@attr': {
+            artist: '',
+            page: '',
+            perPage: '',
+            total: '',
+            totalPages: ''
+        },
+        album: []
+    }
+};
+
+ARTIST_VALID_MOCKS['toptracks'] = {
+    toptracks: {
+        '@attr': {
+            artist: '',
+            page: '',
+            perPage: '',
+            total: '',
+            totalPages: ''
+        },
+        track: []
+    }
+};
+
+ARTIST_VALID_MOCKS['search'] = {
+    results: {
+        '@attr': { for: '' },
+        artistmatches: { artist: [] },
+        'opensearch:Query': {
+            '#text': '',
+            role: '',
+            searchTerms: '',
+            startPage: ''
+        },
+        'opensearch:itemsPerPage': '',
+        'opensearch:startIndex': '',
+        'opensearch:totalResults': ''
+    }
 };
 
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {

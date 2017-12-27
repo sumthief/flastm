@@ -17,9 +17,9 @@ describe('getInfo method', () => {
                 ALBUM_DATA_EXAMPLES.invalid.artist,
                 ALBUM_DATA_EXAMPLES.invalid.album
             )
-            .catch(err =>
-                expect(convertDataToMock(err)).toEqual(
-                    INVALID_RESPONSE_STRUCTURE_MOCK
+            .then(res =>
+                expect(convertDataToMock(res)).toEqual(
+                    ALBUM_VALID_MOCKS.album_empty
                 )
             );
     });
