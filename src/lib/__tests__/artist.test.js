@@ -72,9 +72,9 @@ describe('getInfoByMbid method', () => {
         expect.assertions(1);
         return artist
             .getInfoByMbid(ARTIST_DATA_EXAMPLES.invalid.mbid)
-            .then(res =>
-                expect(convertDataToMock(res)).toEqual(
-                    ARTIST_VALID_MOCKS.artist_empty
+            .catch(err =>
+                expect(convertDataToMock(err)).toEqual(
+                    INVALID_RESPONSE_STRUCTURE_MOCK
                 )
             );
     });
