@@ -1,6 +1,4 @@
-import { LIBRARY_VALID_MOCKS } from './dummy_data';
-
-const { convertDataToMock } = require('./dummy_data');
+const { LIBRARY_VALID_MOCKS, convertDataToMock } = require('./dummy_data');
 
 const config = require('../../../config');
 

@@ -287,6 +287,43 @@ export const LIBRARY_VALID_MOCKS = {
     }
 };
 
+export const TAG_VALID_MOCKS = {};
+
+TAG_VALID_MOCKS.tag = {
+    tag: { name: '', reach: 0, total: 0, wiki: { content: '', summary: '' } }
+};
+
+TAG_VALID_MOCKS.similar = { similartags: { '@attr': { tag: '' }, tag: [] } };
+
+TAG_VALID_MOCKS.albums = {
+    albums: {
+        '@attr': { page: '', perPage: '', tag: '', total: '', totalPages: '' },
+        album: []
+    }
+};
+
+TAG_VALID_MOCKS.topartists = {
+    topartists: {
+        '@attr': { page: '', perPage: '', tag: '', total: '', totalPages: '' },
+        artist: []
+    }
+};
+
+TAG_VALID_MOCKS.tracks = {
+    tracks: {
+        '@attr': { page: '', perPage: '', tag: '', total: '', totalPages: '' },
+        track: []
+    }
+};
+
+TAG_VALID_MOCKS.toptags = {
+    toptags: { '@attr': { num_res: 0, offset: 0, total: 0 }, tag: [] }
+};
+
+TAG_VALID_MOCKS.weeklychartlist = {
+    weeklychartlist: { '@attr': { tag: '' }, chart: [] }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
