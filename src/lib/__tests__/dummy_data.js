@@ -244,6 +244,34 @@ CHART_VALID_MOCKS['topTags'] = {
     }
 };
 
+export const GEO_VALID_MOCKS = {};
+
+GEO_VALID_MOCKS['topArtists'] = {
+    topartists: {
+        '@attr': {
+            country: '',
+            page: '',
+            perPage: '',
+            total: '',
+            totalPages: ''
+        },
+        artist: []
+    }
+};
+
+GEO_VALID_MOCKS['topTracks'] = {
+    tracks: {
+        '@attr': {
+            country: '',
+            page: '',
+            perPage: '',
+            total: '',
+            totalPages: ''
+        },
+        track: []
+    }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
