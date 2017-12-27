@@ -272,6 +272,21 @@ GEO_VALID_MOCKS['topTracks'] = {
     }
 };
 
+export const LIBRARY_VALID_MOCKS = {
+    artists: {
+        artists: {
+            '@attr': {
+                page: '',
+                perPage: '',
+                total: '',
+                totalPages: '',
+                user: ''
+            },
+            artist: []
+        }
+    }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
