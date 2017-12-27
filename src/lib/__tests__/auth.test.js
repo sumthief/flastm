@@ -12,7 +12,7 @@ describe('getToken method', () => {
     });
 });
 
-describe('getMobileSession', () => {
+describe('getMobileSession method', () => {
     test('Should return valid response', () => {
         expect.assertions(1);
         return auth

@@ -221,6 +221,29 @@ AUTH_VALID_MOCKS['mobileSession'] = {
     session: { key: '', name: '', subscriber: 0 }
 };
 
+export const CHART_VALID_MOCKS = {};
+
+CHART_VALID_MOCKS['topArtists'] = {
+    artists: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '' },
+        artist: []
+    }
+};
+
+CHART_VALID_MOCKS['topTracks'] = {
+    tracks: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '' },
+        track: []
+    }
+};
+
+CHART_VALID_MOCKS['topTags'] = {
+    tags: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '' },
+        tag: []
+    }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
