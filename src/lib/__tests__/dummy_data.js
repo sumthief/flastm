@@ -213,6 +213,14 @@ ARTIST_VALID_MOCKS['search'] = {
     }
 };
 
+export const AUTH_VALID_MOCKS = {};
+
+AUTH_VALID_MOCKS['token'] = { token: '' };
+
+AUTH_VALID_MOCKS['mobileSession'] = {
+    session: { key: '', name: '', subscriber: 0 }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
