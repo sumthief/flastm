@@ -47,6 +47,19 @@ export const ARTIST_DATA_EXAMPLES = {
     }
 };
 
+export const TRACK_DATA_EXAMPLES = {
+    valid: {
+        artist: 'breaking benjamin',
+        track: 'dance with devil',
+        mbid: '188ff26f-3892-4443-a981-4d0c395a8377'
+    },
+    invalid: {
+        artist: 'broaking benjamin',
+        track: 'd0nce with d3vil',
+        mbid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    }
+};
+
 export const ALBUM_VALID_MOCKS = {};
 
 ALBUM_VALID_MOCKS['album'] = {
@@ -322,6 +335,39 @@ TAG_VALID_MOCKS.toptags = {
 
 TAG_VALID_MOCKS.weeklychartlist = {
     weeklychartlist: { '@attr': { tag: '' }, chart: [] }
+};
+
+export const TRACK_VALID_MOCKS = {};
+
+TRACK_VALID_MOCKS['correction'] = {
+    corrections: {
+        correction: {
+            track: { url: '', artist: { name: '', url: '' } },
+            '@attr': { index: '', artistcorrected: '', trackcorrected: '' }
+        }
+    }
+};
+
+TRACK_VALID_MOCKS['track'] = {
+    track: {
+        name: '',
+        mbid: '',
+        url: '',
+        duration: '',
+        streamable: { '#text': '', fulltrack: '' },
+        listeners: '',
+        playcount: '',
+        artist: { name: '', mbid: '', url: '' },
+        album: {
+            artist: '',
+            title: '',
+            mbid: '',
+            url: '',
+            image: [],
+            '@attr': { position: '' }
+        },
+        toptags: { tag: [] }
+    }
 };
 
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
