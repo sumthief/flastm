@@ -370,6 +370,18 @@ TRACK_VALID_MOCKS['track'] = {
     }
 };
 
+TRACK_VALID_MOCKS['similar'] = {
+    similartracks: { track: [], '@attr': { artist: '' } }
+};
+
+TRACK_VALID_MOCKS['tags'] = {
+    tags: { '#text': '', '@attr': { artist: '', track: '' } }
+};
+
+TRACK_VALID_MOCKS['toptags'] = {
+    toptags: { '@attr': { artist: '', track: '' }, tag: [] }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
