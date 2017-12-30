@@ -117,7 +117,7 @@ describe('getSimilarByMbid method', () => {
     });
 
     it('Should return invalid response if passed data is invalid', () => {
-        // expect.assertions(1);
+        expect.assertions(1);
         return artist
             .getSimilarByMbid(ARTIST_DATA_EXAMPLES.invalid.mbid)
             .catch(err =>
