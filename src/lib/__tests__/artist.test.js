@@ -1,16 +1,22 @@
+const config = {
+    username: process.env['LASTFM_TEST_USERNAME'] || '',
+    password: process.env['LASTFM_TEST_PASSWORD'] || '',
+    api_key: process.env['LASTFM_TEST_API_KEY'] || '',
+    secret: process.env['LASTFM_TEST_SECRET'] || ''
+};
+
 import {
     BAD_REQUEST_STRUCTURE_MOCK,
     INVALID_RESPONSE_STRUCTURE_MOCK
 } from './dummy_data';
 
-const artist = require('../artist');
-const auth = require('../auth');
+const artist = require('../artist')(config);
+const auth = require('../auth')(config);
 const {
     convertDataToMock,
     ARTIST_VALID_MOCKS,
     ARTIST_DATA_EXAMPLES
 } = require('./dummy_data');
-const username = process.env['LASTFM_TEST_USERNAME'] || '';
 
 describe('getCorrection method', () => {
     it('Should return valid response if passed data is valid', () => {
@@ -144,7 +150,7 @@ describe('getTagsByMbid method', () => {
         expect.assertions(1);
         return artist
             .getTagsByMbid(ARTIST_DATA_EXAMPLES.valid.mbid, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ARTIST_VALID_MOCKS.tags)
@@ -208,7 +214,7 @@ describe('getTags method', () => {
         expect.assertions(1);
         return artist
             .getTags(ARTIST_DATA_EXAMPLES.valid.artist, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ARTIST_VALID_MOCKS.tags)
@@ -274,7 +280,7 @@ describe('getTopTagsByMbid method', () => {
         expect.assertions(1);
         return artist
             .getTopTagsByMbid(ARTIST_DATA_EXAMPLES.valid.mbid, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(
@@ -340,7 +346,7 @@ describe('getTopTags method', () => {
         expect.assertions(1);
         return artist
             .getTopTags(ARTIST_DATA_EXAMPLES.valid.artist, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(
@@ -408,7 +414,7 @@ describe('getTopAlbumsByMbid method', () => {
         expect.assertions(1);
         return artist
             .getTopAlbumsByMbid(ARTIST_DATA_EXAMPLES.valid.mbid, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(
@@ -474,7 +480,7 @@ describe('getTopAlbums method', () => {
         expect.assertions(1);
         return artist
             .getTopAlbums(ARTIST_DATA_EXAMPLES.valid.artist, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(
@@ -542,7 +548,7 @@ describe('getTopTracksByMbid method', () => {
         expect.assertions(1);
         return artist
             .getTopTracksByMbid(ARTIST_DATA_EXAMPLES.valid.mbid, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(
@@ -608,7 +614,7 @@ describe('getTopTracks method', () => {
         expect.assertions(1);
         return artist
             .getTopTracks(ARTIST_DATA_EXAMPLES.valid.artist, {
-                user: username
+                user: config.username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(

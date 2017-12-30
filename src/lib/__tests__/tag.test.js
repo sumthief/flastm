@@ -1,6 +1,12 @@
 import { convertDataToMock, TAG_VALID_MOCKS } from './dummy_data';
+const config = {
+    username: process.env['LASTFM_TEST_USERNAME'] || '',
+    password: process.env['LASTFM_TEST_PASSWORD'] || '',
+    api_key: process.env['LASTFM_TEST_API_KEY'] || '',
+    secret: process.env['LASTFM_TEST_SECRET'] || ''
+};
 
-const tag = require('../tag');
+const tag = require('../tag')(config);
 
 describe('getInfo method', () => {
     test('Should return valid response', () => {

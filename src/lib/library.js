@@ -1,8 +1,11 @@
-const fetch = require('../utils/requests').makeRequest;
+const makeRequest = require('../utils/requests');
 
 const defaultParams = { pkg: 'library' };
 
-module.exports = {
-    getArtists: (user, opts = {}) =>
-        fetch({ ...defaultParams, action: 'getArtists', user, ...opts })
+module.exports = config => {
+    const fetch = makeRequest(config);
+    return {
+        getArtists: (user, opts = {}) =>
+            fetch({ ...defaultParams, action: 'getArtists', user, ...opts })
+    };
 };

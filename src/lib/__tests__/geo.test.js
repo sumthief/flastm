@@ -1,6 +1,12 @@
 import { convertDataToMock, GEO_VALID_MOCKS } from './dummy_data';
+const config = {
+    username: process.env['LASTFM_TEST_USERNAME'] || '',
+    password: process.env['LASTFM_TEST_PASSWORD'] || '',
+    api_key: process.env['LASTFM_TEST_API_KEY'] || '',
+    secret: process.env['LASTFM_TEST_SECRET'] || ''
+};
 
-const geo = require('../geo');
+const geo = require('../geo')(config);
 
 describe('getTopArtists method', () => {
     test('Should return valid response if passed country valid', () => {

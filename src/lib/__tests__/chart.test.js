@@ -1,6 +1,13 @@
+const config = {
+    username: process.env['LASTFM_TEST_USERNAME'] || '',
+    password: process.env['LASTFM_TEST_PASSWORD'] || '',
+    api_key: process.env['LASTFM_TEST_API_KEY'] || '',
+    secret: process.env['LASTFM_TEST_SECRET'] || ''
+};
+
 import { convertDataToMock, CHART_VALID_MOCKS } from './dummy_data';
 
-const chart = require('../chart');
+const chart = require('../chart')(config);
 
 describe('getTopArtists method', function() {
     test('Should return valid response', () => {

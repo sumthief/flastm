@@ -5,10 +5,15 @@ import {
     INVALID_RESPONSE_STRUCTURE_MOCK
 } from './dummy_data';
 
-const track = require('../track');
-const auth = require('../auth');
+const config = {
+    username: process.env['LASTFM_TEST_USERNAME'] || '',
+    password: process.env['LASTFM_TEST_PASSWORD'] || '',
+    api_key: process.env['LASTFM_TEST_API_KEY'] || '',
+    secret: process.env['LASTFM_TEST_SECRET'] || ''
+};
 
-const username = process.env['LASTFM_TEST_USERNAME'] || '';
+const track = require('../track')(config);
+const auth = require('../auth')(config);
 
 describe('getCorrection method', () => {
     test('Should return valid response', () => {
@@ -133,7 +138,7 @@ describe('getTags method', () => {
             .getTags(
                 TRACK_DATA_EXAMPLES.valid.artist,
                 TRACK_DATA_EXAMPLES.valid.track,
-                { username }
+                { username: config.username }
             )
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(TRACK_VALID_MOCKS.tags)
@@ -165,7 +170,9 @@ describe('getTagsByMbid method', () => {
     test('Should return valid response if passed valid data (user is not authorized)', () => {
         expect.assertions(1);
         return track
-            .getTagsByMbid(TRACK_DATA_EXAMPLES.valid.mbid, { username })
+            .getTagsByMbid(TRACK_DATA_EXAMPLES.valid.mbid, {
+                username: config.username
+            })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(TRACK_VALID_MOCKS.tags)
             );
