@@ -60,6 +60,20 @@ export const TRACK_DATA_EXAMPLES = {
     }
 };
 
+export const USER_DATA_EXAMPLES = {
+    taggingtypes: {
+        artist: 'artist',
+        album: 'album',
+        track: 'track'
+    },
+    valid: {
+        artist: 'breaking benjamin'
+    },
+    invalid: {
+        artist: 'broaking benjamin'
+    }
+};
+
 export const ALBUM_VALID_MOCKS = {};
 
 ALBUM_VALID_MOCKS['album'] = {
@@ -401,6 +415,113 @@ TRACK_VALID_MOCKS['nowPlaying'] = {
         ignoredMessage: { '#text': '', code: '' },
         track: { '#text': '', corrected: '' }
     }
+};
+
+export const USER_VALID_MOCKS = {};
+
+USER_VALID_MOCKS['artistTracks'] = {
+    artisttracks: {
+        '@attr': {
+            artist: '',
+            page: '',
+            perPage: '',
+            total: '',
+            totalPages: '',
+            user: ''
+        },
+        track: []
+    }
+};
+
+USER_VALID_MOCKS['user'] = {
+    user: {
+        age: '',
+        bootstrap: '',
+        country: '',
+        gender: '',
+        image: [],
+        name: '',
+        playcount: '',
+        playlists: '',
+        registered: { '#text': 0, unixtime: '' },
+        subscriber: '',
+        type: '',
+        url: ''
+    }
+};
+
+USER_VALID_MOCKS['lovedtracks'] = {
+    lovedtracks: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '', user: '' },
+        track: []
+    }
+};
+
+USER_VALID_MOCKS['friends'] = {
+    friends: {
+        '@attr': { for: '', page: '', perPage: '', total: '', totalPages: '' },
+        user: []
+    }
+};
+
+USER_VALID_MOCKS['taggings'] = {
+    taggings: {
+        '@attr': {
+            page: '',
+            perPage: '',
+            tag: '',
+            total: '',
+            totalPages: '',
+            user: ''
+        },
+        albums: { album: [] }
+    }
+};
+
+USER_VALID_MOCKS['recentTracks'] = {
+    recenttracks: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '', user: '' },
+        track: []
+    }
+};
+
+USER_VALID_MOCKS['topAlbums'] = {
+    topalbums: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '', user: '' },
+        album: []
+    }
+};
+
+USER_VALID_MOCKS['topArtists'] = {
+    topartists: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '', user: '' },
+        artist: []
+    }
+};
+
+USER_VALID_MOCKS['topTags'] = { toptags: { '@attr': { user: '' }, tag: [] } };
+
+USER_VALID_MOCKS['topTracks'] = {
+    toptracks: {
+        '@attr': { page: '', perPage: '', total: '', totalPages: '', user: '' },
+        track: []
+    }
+};
+
+USER_VALID_MOCKS['weeklyAlbumChart'] = {
+    weeklyalbumchart: { '@attr': { from: '', to: '', user: '' }, album: [] }
+};
+
+USER_VALID_MOCKS['weeklyArtistChart'] = {
+    weeklyartistchart: { '@attr': { from: '', to: '', user: '' }, artist: [] }
+};
+
+USER_VALID_MOCKS['weeklyChartList'] = {
+    weeklychartlist: { '@attr': { user: '' }, chart: [] }
+};
+
+USER_VALID_MOCKS['weeklyTrackChart'] = {
+    weeklytrackchart: { '@attr': { from: '', to: '', user: '' }, track: [] }
 };
 
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
