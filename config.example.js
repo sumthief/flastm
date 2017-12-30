@@ -1,3 +1,4 @@
+// Move this file into config.js
 module.exports = {
     // API key got from https://www.last.fm/api/account/create (required)
     api_key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
