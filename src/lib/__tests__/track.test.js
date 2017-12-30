@@ -220,7 +220,7 @@ describe('getTopTags method', () => {
 
 describe('getTopTagsByMbid method', () => {
     test('Should return valid response if passed valid data', () => {
-        // expect.assertions(1);
+        expect.assertions(1);
         return track
             .getTopTagsByMbid(TRACK_DATA_EXAMPLES.valid.mbid)
             .then(res =>
