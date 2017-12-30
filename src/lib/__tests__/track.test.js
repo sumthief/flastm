@@ -237,3 +237,151 @@ describe('getTopTagsByMbid method', () => {
             .catch(err => expect(convertDataToMock(err)).toEqual({}));
     });
 });
+
+describe('addTags method', () => {
+    test('Should return valid response', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .addTags(
+                        TRACK_DATA_EXAMPLES.valid.artist,
+                        TRACK_DATA_EXAMPLES.valid.track,
+                        'love',
+                        sk
+                    )
+                    .then(res => expect(res).toEqual({}))
+            );
+    });
+});
+
+describe('removeTag method', () => {
+    test('Should return valid response', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .removeTag(
+                        TRACK_DATA_EXAMPLES.valid.artist,
+                        TRACK_DATA_EXAMPLES.valid.track,
+                        'love',
+                        sk
+                    )
+                    .then(res => expect(res).toEqual({}))
+            );
+    });
+});
+
+describe('search method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return track
+            .search(TRACK_DATA_EXAMPLES.valid.track)
+            .then(res =>
+                expect(convertDataToMock(res)).toEqual(TRACK_VALID_MOCKS.search)
+            );
+    });
+
+    test('Should return valid response if passed invalid data', () => {
+        expect.assertions(1);
+        return track
+            .search(TRACK_DATA_EXAMPLES.invalid.track)
+            .then(res =>
+                expect(convertDataToMock(res)).toEqual(TRACK_VALID_MOCKS.search)
+            );
+    });
+});
+
+describe('love method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .love(
+                        TRACK_DATA_EXAMPLES.valid.artist,
+                        TRACK_DATA_EXAMPLES.valid.track,
+                        sk
+                    )
+                    .then(res => expect(convertDataToMock(res)).toEqual({}))
+            );
+    });
+
+    test('Should return valid response if passed invalid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .love(
+                        TRACK_DATA_EXAMPLES.invalid.artist,
+                        TRACK_DATA_EXAMPLES.invalid.track,
+                        sk
+                    )
+                    .then(res => expect(convertDataToMock(res)).toEqual({}))
+            );
+    });
+});
+
+describe('unlove method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .unlove(
+                        TRACK_DATA_EXAMPLES.valid.artist,
+                        TRACK_DATA_EXAMPLES.valid.track,
+                        sk
+                    )
+                    .then(res => expect(convertDataToMock(res)).toEqual({}))
+            );
+    });
+
+    test('Should return valid response if passed invalid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .unlove(
+                        TRACK_DATA_EXAMPLES.invalid.artist,
+                        TRACK_DATA_EXAMPLES.invalid.track,
+                        sk
+                    )
+                    .then(res => expect(convertDataToMock(res)).toEqual({}))
+            );
+    });
+});
+
+describe('updateNowPlaying method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return auth
+            .getMobileSession()
+            .then(sessionInfo => sessionInfo.session.key)
+            .then(sk =>
+                track
+                    .updateNowPlaying(
+                        TRACK_DATA_EXAMPLES.valid.artist,
+                        TRACK_DATA_EXAMPLES.valid.track,
+                        sk
+                    )
+                    .then(res =>
+                        expect(convertDataToMock(res)).toEqual(
+                            TRACK_VALID_MOCKS.nowPlaying
+                        )
+                    )
+            );
+    });
+});

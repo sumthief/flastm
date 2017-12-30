@@ -382,6 +382,27 @@ TRACK_VALID_MOCKS['toptags'] = {
     toptags: { '@attr': { artist: '', track: '' }, tag: [] }
 };
 
+TRACK_VALID_MOCKS['search'] = {
+    results: {
+        '@attr': {},
+        'opensearch:Query': { '#text': '', role: '', startPage: '' },
+        'opensearch:itemsPerPage': '',
+        'opensearch:startIndex': '',
+        'opensearch:totalResults': '',
+        trackmatches: { track: [] }
+    }
+};
+
+TRACK_VALID_MOCKS['nowPlaying'] = {
+    nowplaying: {
+        album: { '#text': '', corrected: '' },
+        albumArtist: { '#text': '', corrected: '' },
+        artist: { '#text': '', corrected: '' },
+        ignoredMessage: { '#text': '', code: '' },
+        track: { '#text': '', corrected: '' }
+    }
+};
+
 export const INVALID_RESPONSE_STRUCTURE_MOCK = {
     error: 0,
     message: '',
