@@ -7,7 +7,7 @@ import {
 import * as auth from '../auth';
 
 const user = require('../user');
-const { username } = require('../../../config');
+const username = process.env['LASTFM_TEST_USERNAME'] || '';
 
 const generateNonExistingUsername = username =>
     username.split('').join('!@#%$^&*()');

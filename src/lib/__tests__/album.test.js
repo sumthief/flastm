@@ -1,6 +1,6 @@
 const album = require('../album');
 const auth = require('../auth');
-const config = require('../../../config');
+const username = process.env['LASTFM_TEST_USERNAME'] || '';
 const {
     BAD_REQUEST_STRUCTURE_MOCK,
     INVALID_RESPONSE_STRUCTURE_MOCK,
@@ -153,7 +153,7 @@ describe('getTagsByMbid method', () => {
         expect.assertions(1);
         return album
             .getTagsByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, {
-                user: config.username
+                user: username
             })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(ALBUM_VALID_MOCKS.tags)
@@ -223,7 +223,7 @@ describe('getTags method', () => {
                 ALBUM_DATA_EXAMPLES.valid.artist,
                 ALBUM_DATA_EXAMPLES.valid.album,
                 {
-                    user: config.username
+                    user: username
                 }
             )
             .then(res =>

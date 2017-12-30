@@ -8,7 +8,7 @@ import {
 const track = require('../track');
 const auth = require('../auth');
 
-const { username } = require('../../../config');
+const username = process.env['LASTFM_TEST_USERNAME'] || '';
 
 describe('getCorrection method', () => {
     test('Should return valid response', () => {
