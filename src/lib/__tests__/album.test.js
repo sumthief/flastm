@@ -399,3 +399,35 @@ describe('removeTag method', () => {
             );
     });
 });
+
+describe('getTopTagsByMbid method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return album
+            .getTopTagsByMbid(ALBUM_DATA_EXAMPLES.valid.mbid, {
+                album: ALBUM_DATA_EXAMPLES.valid.album,
+                artist: ALBUM_DATA_EXAMPLES.valid.artist
+            })
+            .then(res =>
+                expect(convertDataToMock(res)).toEqual(
+                    ALBUM_VALID_MOCKS.toptags
+                )
+            );
+    });
+});
+
+describe('getTopTags method', () => {
+    test('Should return valid response if passed valid data', () => {
+        expect.assertions(1);
+        return album
+            .getTopTags(
+                ALBUM_DATA_EXAMPLES.valid.artist,
+                ALBUM_DATA_EXAMPLES.valid.album
+            )
+            .then(res =>
+                expect(convertDataToMock(res)).toEqual(
+                    ALBUM_VALID_MOCKS.toptags
+                )
+            );
+    });
+});

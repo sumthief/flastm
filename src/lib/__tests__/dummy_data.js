@@ -136,6 +136,10 @@ ALBUM_VALID_MOCKS['tags'] = {
     tags: { '@attr': { album: '', artist: '' }, tag: [] }
 };
 
+ALBUM_VALID_MOCKS['toptags'] = {
+    toptags: { '@attr': { album: '', artist: '' }, tag: [] }
+};
+
 export const ARTIST_VALID_MOCKS = {};
 
 ARTIST_VALID_MOCKS['correction'] = {

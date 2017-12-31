@@ -1,4 +1,4 @@
-# flastm [![Build Status](https://travis-ci.org/sumthief/flastm.svg?branch=master)](https://travis-ci.org/sumthief/flastm) [![Coverage Status](https://coveralls.io/repos/github/sumthief/flastm/badge.svg?branch=master-new)](https://coveralls.io/github/sumthief/flastm?branch=master-new)
+# flastm [![Build Status](https://travis-ci.org/sumthief/flastm.svg?branch=master)](https://travis-ci.org/sumthief/flastm) [![Coverage Status](https://coveralls.io/repos/github/sumthief/flastm/badge.svg?branch=master)](https://coveralls.io/github/sumthief/flastm?branch=master)
 
 Package for Node.JS which provides Promise based API under [Last.fm](https://www.last.fm/api/intro)
  REST API.
