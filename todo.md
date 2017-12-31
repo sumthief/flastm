@@ -1,7 +1,0 @@
-- [ ] Test implemented 'GET' methods
-- [x] Implement auth methods
-- [x] Implement POST methods for all categories
-- [ ] Test POST methods
-- [ ] Implements providers for caching responses
-- [ ] Provide documentation
-- [ ] Wrap this library to package and make it available via [npm](http://npmjs.org)
