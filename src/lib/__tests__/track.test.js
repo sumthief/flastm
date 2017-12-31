@@ -229,7 +229,10 @@ describe('getTopTagsByMbid method', () => {
     test('Should return valid response if passed valid data', () => {
         expect.assertions(1);
         return track
-            .getTopTagsByMbid(TRACK_DATA_EXAMPLES.valid.mbid)
+            .getTopTagsByMbid(TRACK_DATA_EXAMPLES.valid.mbid, {
+                artist: TRACK_DATA_EXAMPLES.valid.artist,
+                track: TRACK_DATA_EXAMPLES.valid.track
+            })
             .then(res =>
                 expect(convertDataToMock(res)).toEqual(
                     TRACK_VALID_MOCKS.toptags
