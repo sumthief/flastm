@@ -1,9 +1,21 @@
 language: node_js
 node_js:
-  - "8"
-  - "7"
+  - '8'
+  - '7'
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 script:
   - npm run test
+before_deploy:
+  cp package.json dist/ && cp README.md dist/
+  cd dist
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: "shlyapkin.g@gmail.com"
+  api_key:
+    secure: h+qW1Yfq3Jat8XhqyNXekDPoghGe/sLBaQ6szNGIWdzfuihCnRPBEQPLPIIQtZPPDcXld4h4LbhJiiAw/oE1V/jaE+dzL9aoutHZLXskqJPCHPXLhCMwnKklufzXgMnzAHLe49c5nrxqF1VjpZU9zDD/og+vDLnT0Mzh8i98OQaWuM1GpFky5AxmDTikmKFhAYTflEWAV6Pen3p2Wrk7F38r1FxfepzFL+VzVQzuHEKbv4X56UCHThdqHQV0nVbAp0UdmjUmqHOEZj/HrNV5BzNuesYAf13RvBzw/TWajNHL5DnmMFSOyCuiBk18T/56gXp5R6PSn9QCspNXAwgP42TRu4Fzwomks9z9vttvFkhZwnYubqYBePiMMoUChS/vSWxJ+Qy4ZMr4/ecTFB6PnGHV1SFySIdFo9AtvdK7mi5nqmjqRj6h1UAzrsnx9I7Qt+LZq/GdweI+a3lulnoiTH3daY31m3pB60zTyiO5yOOWUqdHdkCYeAWlz0CFGZhf49aK20egRBrAI8c04GO0wzVCVTQanrlMWWsH3M3rAbiEoBD/cL2cKP2uOU/J7glgsvJJPLw7kuLi/D9Sqtnbib57ACgZspAAB60FAG3yyRIwMnbDA0Lk+mgJMQyfBF0H8pmS8dLki0Tjkl//+tKvu0ZBdd4/QiMjUIZa6cMEGnM=
+  on:
+    tags: true
+    node: '8'
