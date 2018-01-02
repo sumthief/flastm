@@ -7,7 +7,7 @@ REST API.
 
 Install via npm:
 
-```
+```bash
 npm install --save flastm
 ```
 

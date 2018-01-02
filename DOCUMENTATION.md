@@ -5,7 +5,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 * [Album](#album)
 * [Artist](#artist)
 * [Auth](#auth)
-* Chart
+* [Chart](#chart)
 * Geo
 * Library
 * Tag
@@ -485,4 +485,55 @@ const auth = require('flastm')(config);
 auth
     .getMobileSession()
     .then(sessionInfo => console.log(sessionInfo.session.key));
+```
+
+### Chart
+
+* [getTopArtists](#gettopartists)
+* [getTopTracks](#gettoptracks-1)
+* [getTopTags](#gettoptags-2)
+
+##### getTopArtists
+
+Get the top artists chart
+
+```javascript
+const chart = require('flastm')(config).chart;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+chart.getTopArtists(options).then(res => console.log(res));
+```
+
+##### getTopTracks
+
+Get the top tracks chart
+
+```javascript
+const chart = require('flastm')(config).chart;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+chart.getTopTracks(options).then(res => console.log(res));
+```
+
+##### getTopTags
+
+Get the top tags chart
+
+```javascript
+const chart = require('flastm')(config).chart;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+chart.getTopTags(options).then(res => console.log(res));
 ```
