@@ -4,7 +4,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 
 * [Album](#album)
 * [Artist](#artist)
-* Auth
+* [Auth](#auth)
 * Chart
 * Geo
 * Library
@@ -14,10 +14,10 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 
 ### Album
 
-* [getInfo](#getInfo)
+* [getInfo](#getinfo)
 * [getInfoByMbid](#getinfobymbid)
 * [getTags](#gettags)
-* [getTagsByMbid](#getTagsByMbid)
+* [getTagsByMbid](#gettagsbymbid)
 * [getTopTags](#gettoptags)
 * [getTopTagsByMbid](#gettoptagsbymbid)
 * [search](#search)
@@ -181,22 +181,22 @@ auth
 
 ### Artist
 
-* [getCorrection](#getCorrection)
-* [getInfo](#getInfo)
-* [getInfoByMbid](#getInfoByMbid)
-* [getSimilar](#getSimilar)
-* [getSimilarByMbid](#getSimilarByMbid)
-* [getTags](#getTags)
-* [getTagsByMbid](#getTagsByMbid)
-* [getTopAlbums](#getTopAlbums)
-* [getTopAlbumsByMbid](#getTopAlbumsByMbid)
-* [getTopTags](#getTopTags)
-* [getTopTagsByMbid](#getTopTagsByMbid)
-* [getTopTracks](#getTopTracks)
-* [getTopTracksByMbid](#getTopTracksByMbid)
-* [search](#search)
-* [addTags](#addTags)
-* [removeTag](#removeTag)
+* [getCorrection](#getcorrection)
+* [getInfo](#getinfo-1)
+* [getInfoByMbid](#getinfobymbid-1)
+* [getSimilar](#getsimilar)
+* [getSimilarByMbid](#getsimilarbymbid)
+* [getTags](#gettags-1)
+* [getTagsByMbid](#gettagsbymbid-1)
+* [getTopAlbums](#gettopalbums)
+* [getTopAlbumsByMbid](#gettopalbumsbymbid)
+* [getTopTags](#gettoptags-1)
+* [getTopTagsByMbid](#gettoptagsbymbid)
+* [getTopTracks](#gettoptracks)
+* [getTopTracksByMbid](#gettoptracksbymbid)
+* [search](#search-1)
+* [addTags](#addtags-1)
+* [removeTag](#removetag-1)
 
 ##### getCorrection
 
@@ -447,4 +447,42 @@ auth
     .getMobileSession()
     .then(sessionInfo => sessionInfo.session.key)
     .then(sk => artist.removeTag('Breaking Benjamin', 'rock', { sk }));
+```
+
+### Auth
+
+* [getToken](#gettoken)
+* [getSession](#getsession)
+* [getMobileSession](#getmobilesession)
+
+##### getToken
+
+Get authorization token.
+
+```javascript
+const auth = require('flastm')(config);
+
+auth.getToken().then(res => console.log(res.token));
+```
+
+##### getSession
+
+Get session (requires <strong>confirmed</strong> token).
+
+```javascript
+const auth = require('flastm')(config);
+
+auth.getSession('confirmedToken').then(sessionInfo => console.log(sessionInfo));
+```
+
+##### getMobileSession
+
+Get mobile session (by login and password, so <strong>requires username and password in config object</strong>).
+
+```javascript
+const auth = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => console.log(sessionInfo.session.key));
 ```
