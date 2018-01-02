@@ -6,7 +6,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 * [Artist](#artist)
 * [Auth](#auth)
 * [Chart](#chart)
-* Geo
+* [Geo](#geo)
 * Library
 * Tag
 * Track
@@ -536,4 +536,44 @@ const options = {
 };
 
 chart.getTopTags(options).then(res => console.log(res));
+```
+
+### Geo
+
+* [getTopArtists](#gettopartists-1)
+* [getTopTracks](#gettoptracks-2)
+
+##### getTopArtists
+
+Get the most popular artists on Last.fm by country
+
+```javascript
+const geo = require('flastm')(config).geo;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+// Full country name.
+const country = 'Russian Federation';
+
+geo.getTopArtists(country, options).then(res => console.log(res));
+```
+
+##### getTopTracks
+
+Get the most popular tracks on Last.fm last week by country
+
+```javascript
+const geo = require('flastm')(config).geo;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    location: 'xxxxxx'
+};
+// Full country name.
+const country = 'Russian Federation';
+
+geo.getTopTracks(country, options).then(res => console.log(res));
 ```
