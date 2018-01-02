@@ -7,7 +7,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 * [Auth](#auth)
 * [Chart](#chart)
 * [Geo](#geo)
-* Library
+* [Library](#library)
 * Tag
 * Track
 * User
@@ -576,4 +576,25 @@ const options = {
 const country = 'Russian Federation';
 
 geo.getTopTracks(country, options).then(res => console.log(res));
+```
+
+### Library
+
+* [getArtists](#getartists)
+
+##### getArtists
+
+List of artists from user`s library
+
+```javascript
+const library = require('flastm')(config).library;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+const username = 'xxxxxxxx';
+
+library.getArtists(username, options).then(res => console.log(res));
 ```
