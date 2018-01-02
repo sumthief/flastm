@@ -6,9 +6,9 @@ cache:
   directories:
   - node_modules
 script:
+  - npm run build
   - npm run test
 before_deploy:
-  npm run build
   cp package.json dist/ && cp README.md dist/ && cp DOCUMENTATION.md dist/
   cd dist
 deploy:
