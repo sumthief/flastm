@@ -8,7 +8,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 * [Chart](#chart)
 * [Geo](#geo)
 * [Library](#library)
-* Tag
+* [Tag](#tag)
 * Track
 * User
 
@@ -597,4 +597,103 @@ const options = {
 const username = 'xxxxxxxx';
 
 library.getArtists(username, options).then(res => console.log(res));
+```
+
+### Tag
+
+* [getInfo](#getinfo-2)
+* [getSimilar](#getsimilar-1)
+* [getTopAlbums](#gettopalbums-1)
+* [getTopArtists](#gettopartists-2)
+* [getTopTracks](#gettoptracks-3)
+* [getTopTags](#gettoptags-3)
+* [getWeeklyChartList](#getWeeklyChartList)
+
+##### getInfo
+
+Get info about tag
+
+```javascript
+const tag = require('flastm')(config).tag;
+// Optional
+const options = {
+    language: 'ru'
+};
+
+tag.getInfo('rock', options).then(res => console.log(res));
+```
+
+##### getSimilar
+
+Get similar tags.
+
+```javascript
+const tag = require('flastm')(config).tag;
+
+tag.getSimilar('rock').then(res => console.log(res));
+```
+
+##### getTopAlbums
+
+Get top albums by tag.
+
+```javascript
+const tag = require('flastm')(config).tag;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+tag.getTopAlbums('rock', options).then(res => console.log(res));
+```
+
+##### getTopArtists
+
+Get top artists by tag.
+
+```javascript
+const tag = require('flastm')(config).tag;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+tag.getTopArtists('rock', options).then(res => console.log(res));
+```
+
+##### getTopTracks
+
+Get top tracks by tag.
+
+```javascript
+const tag = require('flastm')(config).tag;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+tag.getTopTracks('rock', options).then(res => console.log(res));
+```
+
+##### getTopTags
+
+Get list of top tags.
+
+```javascript
+const tag = require('flastm')(config).tag;
+
+tag.getTopTags().then(res => console.log(res));
+```
+
+##### getWeeklyChartList
+
+Get list of possible charts for the tag.
+
+```javascript
+const tag = require('flastm')(config).tag;
+
+tag.getWeeklyChartList('rock').then(res => console.log(res));
 ```
