@@ -9,7 +9,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 * [Geo](#geo)
 * [Library](#library)
 * [Tag](#tag)
-* Track
+* [Track](#track)
 * User
 
 ### Album
@@ -191,7 +191,7 @@ auth
 * [getTopAlbums](#gettopalbums)
 * [getTopAlbumsByMbid](#gettopalbumsbymbid)
 * [getTopTags](#gettoptags-1)
-* [getTopTagsByMbid](#gettoptagsbymbid)
+* [getTopTagsByMbid](#gettoptagsbymbid-1)
 * [getTopTracks](#gettoptracks)
 * [getTopTracksByMbid](#gettoptracksbymbid)
 * [search](#search-1)
@@ -696,4 +696,288 @@ Get list of possible charts for the tag.
 const tag = require('flastm')(config).tag;
 
 tag.getWeeklyChartList('rock').then(res => console.log(res));
+```
+
+### Track
+
+* [getCorrection](#getcorrection-1)
+* [getInfo](#getinfo-3)
+* [getInfoByMbid](#getinfobymbid-2)
+* [getSimilar](#getsimilar-2)
+* [getSimilarByMbid](#getsimilarbymbid-1)
+* [getTags](#gettags-2)
+* [getTagsByMbid](#gettagsbymbid-2)
+* [getTopTags](#gettoptags-4)
+* [getTopTagsByMbid](#gettoptagsbymbid-2)
+* [search](#search-2)
+* [addTags](#addtags-2)
+* [love](#love)
+* [unlove](#unlove)
+* [removeTag](#removetag-2)
+* [updateNowPlaying](#updatenowplaying)
+
+##### getCorrection
+
+Get correction of passed track to canonical track.
+
+```javascript
+const track = require('flastm')(config).track;
+
+track
+    .getCorrection('Breaking Benjamin', 'Dance with devel')
+    .then(res => console.log(res));
+```
+
+##### getInfo
+
+Get info about track.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1,
+    // Required if non-authorized. Otherwise options should contain sk (session token) key.
+    username: 'xxxxxxxx',
+    // Required if username not passed. Otherwise options should contain username key.
+    sk: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+};
+
+track
+    .getInfo('Breaking Benjamin', 'Dance with Devil', options)
+    .then(res => console.log(res));
+```
+
+##### getInfoByMbid
+
+Get info about track by MusicBrainzID.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1,
+    // Required if non-authorized. Otherwise options should contain sk (session token) key.
+    username: 'xxxxxxxx',
+    // Required if username not passed. Otherwise options should contain username key.
+    sk: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+};
+
+track
+    .getInfoByMbid('188ff26f-3892-4443-a981-4d0c395a8377', options)
+    .then(res => console.log(res));
+```
+
+##### getSimilar
+
+Get similar tracks.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1,
+    limit: 10
+};
+
+track
+    .getSimilar('Breaking Benjamin', 'Dance with Devil', options)
+    .then(res => console.log(res));
+```
+
+##### getSimilarByMbid
+
+Get similar tracks by MusicBrainzID.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1,
+    limit: 10
+};
+
+track
+    .getSimilarByMbid('188ff26f-3892-4443-a981-4d0c395a8377', options)
+    .then(res => console.log(res));
+```
+
+##### getTags
+
+Get tags for track.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1,
+    // Required if non-authorized. Otherwise options should contain sk (session token) key.
+    username: 'xxxxxxxx',
+    // Required if username not passed. Otherwise options should contain username key.
+    sk: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+};
+
+track
+    .getTags('Breaking Benjamin', 'Dance with Devil', options)
+    .then(res => console.log(res));
+```
+
+##### getTagsByMbid
+
+Get tags for track by MusicBrainzID.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1,
+    // Required if non-authorized. Otherwise options should contain sk (session token) key.
+    username: 'xxxxxxxx',
+    // Required if username not passed. Otherwise options should contain username key.
+    sk: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+};
+
+track
+    .getTagsByMbid('188ff26f-3892-4443-a981-4d0c395a8377', options)
+    .then(res => console.log(res));
+```
+
+##### getTopTags
+
+Get top tags for track.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1
+};
+
+track
+    .getTopTags('Breaking Benjamin', 'Dance with Devil', options)
+    .then(res => console.log(res));
+```
+
+##### getTopTagsByMbid
+
+Get top tags for track by MusicBrainzID.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    autocorrect: 1
+};
+
+track
+    .getTopTagsByMbid('Breaking Benjamin', 'Dance with Devil', options)
+    .then(res => console.log(res));
+```
+
+##### search
+
+Search track by title.
+
+```javascript
+const track = require('flastm')(config).track;
+// Optional
+const options = {
+    limit: 10,
+    page: 2,
+    artist: 'Breaking Benjamin'
+};
+
+track.search('Dance with Devil', options).then(res => console.log(res));
+```
+
+##### addTags
+
+Add tags to track.
+
+```javascript
+const { track, auth } = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk =>
+        track.addTags(
+            'Breaking Benjamin',
+            'Dance With Devil',
+            'rock,alternative,love',
+            sk
+        )
+    );
+```
+
+##### love
+
+Love the track.
+
+```javascript
+const { track, auth } = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk => track.love('Breaking Benjamin', 'Dance With Devil', sk));
+```
+
+##### unlove
+
+Unlove the track.
+
+```javascript
+const { track, auth } = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk => track.unlove('Breaking Benjamin', 'Dance With Devil', sk));
+```
+
+##### removeTag
+
+Remove <strong>tag</strong> from track.
+
+```javascript
+const { track, auth } = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk =>
+        track.removeTag('Breaking Benjamin', 'Dance With Devil', 'rock', sk)
+    );
+```
+
+##### updateNowPlaying
+
+Used to notify Last.fm that a user has started listening to a track.
+
+```javascript
+const { track, auth } = require('flastm')(config);
+// Optional
+const options = {
+    album: 'Phobia',
+    trackNumber: 1,
+    context: 'see last.fm api for details',
+    mbid: '188ff26f-3892-4443-a981-4d0c395a8377',
+    duration: 251,
+    albumArtist: 'Breaking Benjamin'
+};
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk =>
+        track
+            .updateNowPlaying(
+                'Breaking Benjamin',
+                'Dance with Devil',
+                sk,
+                options
+            )
+            .then(res => console.log(res))
+    );
 ```
