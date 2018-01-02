@@ -3,7 +3,7 @@
 This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 
 * [Album](#album)
-* Artist
+* [Artist](#artist)
 * Auth
 * Chart
 * Geo
@@ -173,6 +173,278 @@ auth
     .getMobileSession()
     .then(sessionInfo => sessionInfo.session.key)
     .then(sk =>
-        album.removeTag('Breaking Benjamin', 'Phobia', 'rock,alternative', { sk })
+        album.removeTag('Breaking Benjamin', 'Phobia', 'rock,alternative', {
+            sk
+        })
     );
+```
+
+### Artist
+
+* [getCorrection](#getCorrection)
+* [getInfo](#getInfo)
+* [getInfoByMbid](#getInfoByMbid)
+* [getSimilar](#getSimilar)
+* [getSimilarByMbid](#getSimilarByMbid)
+* [getTags](#getTags)
+* [getTagsByMbid](#getTagsByMbid)
+* [getTopAlbums](#getTopAlbums)
+* [getTopAlbumsByMbid](#getTopAlbumsByMbid)
+* [getTopTags](#getTopTags)
+* [getTopTagsByMbid](#getTopTagsByMbid)
+* [getTopTracks](#getTopTracks)
+* [getTopTracksByMbid](#getTopTracksByMbid)
+* [search](#search)
+* [addTags](#addTags)
+* [removeTag](#removeTag)
+
+##### getCorrection
+
+Get correction of passed artist to canonical artist.
+
+```javascript
+const artist = require('flastm')(config).artist;
+
+artist.getCorrection('Guns and roses').then(res => console.log(res));
+```
+
+##### getInfo
+
+Get info about artist.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    autocorrect: 1,
+    username: 'xxxxxxxx',
+    lang: 'ru'
+};
+
+artist.getInfo('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### getInfoByMbid
+
+Get info about artist by MusicBrainzID.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    autocorrect: 1,
+    username: 'xxxxxxxx',
+    lang: 'ru'
+};
+
+artist
+    .getInfoByMbid('854a1807-025b-42a8-ba8c-2a39717f1d25', options)
+    .then(res => console.log(res));
+```
+
+##### getSimilar
+
+Get similar artists.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    limit: 10,
+    autocorrect: 1
+};
+
+artist.getSimilar('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### getSimilarByMbid
+
+Get similar artists by MusicBrainzID.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    limit: 10,
+    autocorrect: 1
+};
+
+artist
+    .getSimilarByMbid('854a1807-025b-42a8-ba8c-2a39717f1d25', options)
+    .then(res => console.log(res));
+```
+
+##### getTags
+
+Get tags for applied user to artist.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    autocorrect: 1,
+    // Required if non-authorized. Otherwise options should contain sk (session token) key.
+    username: 'xxxxxxxx',
+    // Required if username not passed. Otherwise options should contain username key.
+    sk: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+};
+
+artist.getTags('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### getTagsByMbid
+
+Get tags for applied user to artist by MusicBrainzID.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    autocorrect: 1,
+    // Required if non-authorized. Otherwise options should contain sk (session token) key.
+    username: 'xxxxxxxx',
+    // Required if username not passed. Otherwise options should contain username key.
+    sk: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+};
+
+artist
+    .getTagsByMbid('854a1807-025b-42a8-ba8c-2a39717f1d25', options)
+    .then(res => console.log(res));
+```
+
+##### getTopAlbums
+
+Get top albums for artist.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    autocorrect: 1
+};
+
+artist.getTopAlbums('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### getTopAlbumsByMbid
+
+Get top albums for artist by MusicBrainzID.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    autocorrect: 1
+};
+
+artist
+    .getTopAlbums('854a1807-025b-42a8-ba8c-2a39717f1d25', options)
+    .then(res => console.log(res));
+```
+
+##### getTopTags
+
+Get top tags for artist.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = { autocorrect: 1 };
+
+artist.getTopTags('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### getTopTagsByMbid
+
+Get top tags for artist by MusicBrainzID.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = { autocorrect: 1 };
+
+artist
+    .getTopTagsByMbid('854a1807-025b-42a8-ba8c-2a39717f1d25', options)
+    .then(res => console.log(res));
+```
+
+##### getTopTracks
+
+Get top tracks for artist.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    autocorrect: 1
+};
+
+artist.getTopTracks('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### getTopTracksByMbid
+
+Get top tracks for artist by MusicBrainzID.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    autocorrect: 1
+};
+
+artist
+    .getTopTracksByMbid('854a1807-025b-42a8-ba8c-2a39717f1d25', options)
+    .then(res => console.log(res));
+```
+
+##### search
+
+Search artists by title.
+
+```javascript
+const artist = require('flastm')(config).artist;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+artist.search('Breaking Benjamin', options).then(res => console.log(res));
+```
+
+##### addTags
+
+Add tags for artist.
+
+```javascript
+const { artist, auth } = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk =>
+        artist.addTags('Breaking Benjamin', 'rock,alternative,love', { sk })
+    );
+```
+
+##### removeTag
+
+Remove <strong>tag</strong> for artist.
+
+```javascript
+const { artist, auth } = require('flastm')(config);
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk => artist.removeTag('Breaking Benjamin', 'rock', { sk }));
 ```

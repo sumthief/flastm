@@ -8,7 +8,7 @@ cache:
 script:
   - npm run test
 before_deploy:
-  cp package.json dist/ && cp README.md dist/
+  cp package.json dist/ && cp README.md dist/ && cp DOCUMENTATION.md dist/
   cd dist
 deploy:
   skip_cleanup: true
