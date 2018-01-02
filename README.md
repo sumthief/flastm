@@ -5,17 +5,42 @@ REST API.
 
 ## Installation
 
-At the moment there is no package available to download via npm/yarn. But it'll appear soon.
+Install via npm:
+
+```
+npm install --save flastm
+```
+
+Install via yarn:
+
+```bash
+yarn add flastm
+```
 
 ## Usage
 
-It'll appear right after this library will be packaged.
+First of all to use this package you should receive Last.fm API key and secret. You can do it via [creation API key.](https://www.last.fm/api/account/create)
 
-## Todo
+After that you can use package by this way:
 
-- [x] Test implemented 'GET' methods
-- [x] Implement auth methods
-- [x] Implement POST methods for all categories
-- [x] Test POST methods
-- [ ] Provide documentation
-- [ ] Wrap this library to package and make it available via [npm](http://npmjs.org)
+```javascript
+const config = {
+    api_key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    // Optional: fill only if chosen use auth.getMobileSession method for authorization.
+    username: 'xxxxxxxx',
+    password: 'xxxxxxxx'
+};
+const flastm = require('flastm')(config);
+const { album, artist } = flastm;
+
+// Get information about album.
+album.getInfo('Breaking Benjamin', 'Phobia')
+    .then(res => console.log(res));
+
+// Get information about artist.
+artist.getInfo('Breaking Benjamin')
+    .then(res => console.log(res));
+```
+
+List of all packages and methods you can see [here.](https://github.com/sumthief/flastm/blob/master/DOCUMENTATION.md)
