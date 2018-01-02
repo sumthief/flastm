@@ -1,3 +1,5 @@
+jest.setTimeout(10000);
+
 import {
     convertDataToMock,
     TRACK_VALID_MOCKS,

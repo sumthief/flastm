@@ -1,3 +1,5 @@
+jest.setTimeout(10000);
+
 const { LIBRARY_VALID_MOCKS, convertDataToMock } = require('./dummy_data');
 const config = {
     username: process.env['LASTFM_TEST_USERNAME'] || '',

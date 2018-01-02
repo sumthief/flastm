@@ -1,3 +1,5 @@
+jest.setTimeout(10000);
+
 import {
     convertDataToMock,
     INVALID_RESPONSE_STRUCTURE_MOCK,

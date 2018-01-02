@@ -1,3 +1,5 @@
+jest.setTimeout(10000);
+
 const config = {
     username: process.env['LASTFM_TEST_USERNAME'] || '',
     password: process.env['LASTFM_TEST_PASSWORD'] || '',
