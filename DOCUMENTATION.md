@@ -10,7 +10,7 @@ This library provides these [Last.fm packages](https://www.last.fm/api/intro):
 * [Library](#library)
 * [Tag](#tag)
 * [Track](#track)
-* User
+* [User](#user)
 
 ### Album
 
@@ -980,4 +980,232 @@ auth
             )
             .then(res => console.log(res))
     );
+```
+
+### User
+
+* [getArtistTracks](#getartisttracks)
+* [getFriends](#getfriends)
+* [getInfo](#getinfo-4)
+* [getLovedTracks](#getlovedtracks)
+* [getPersonalTags](#getpersonaltags)
+* [getRecentTracks](#getrecenttracks)
+* [getTopAlbums](#gettopalbums-2)
+* [getTopArtists](#gettopartists-3)
+* [getTopTags](#gettoptags)
+* [getTopTracks](#gettoptracks)
+* [getWeeklyAlbumChart](#getweeklyalbumchart)
+* [getWeeklyArtistChart](#getweeklyartistchart)
+* [getWeeklyChartList](#getweeklychartlist)
+* [getWeeklyTrackChart](#getweeklytrackchart)
+
+##### getArtistTracks
+
+Get a list of tracks by a given artist scrobbled by this user, including scrobble time.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    startTimestamp: 1514964785,
+    endTimestamp: 1514964785,
+    page: 2
+};
+
+user
+    .getArtistTracks('xxxxname', 'Breaking Benjamin', options)
+    .then(res => console.log(res));
+```
+
+##### getFriends
+
+Get list of friends for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    recenttracks: 1
+};
+
+user.getFriends('xxxxname', options).then(res => console.log(res));
+```
+
+##### getInfo
+
+Get information about specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+
+user.getInfo('xxxxname').then(res => console.log(res));
+```
+
+##### getLovedTracks
+
+Get list of loved tracks for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+user.getLovedTracks('xxxxname', options).then(res => console.log(res));
+```
+
+##### getPersonalTags
+
+Get list of personal tags for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    page: 2,
+    limit: 10
+};
+
+const taggingtype = 'artist'; // or 'album' or 'track'.
+
+user
+    .getPersonalTags('xxxxname', 'rock', taggingtype, options)
+    .then(res => console.log(res));
+```
+
+##### getRecentTracks
+
+Get list of recent tracks for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    page: 2,
+    limit: 10,
+    from: 1514964785,
+    extended: 1,
+    to: 1514964785
+};
+
+user.getRecentTracks('xxxxname', options).then(res => console.log(res));
+```
+
+##### getTopAlbums
+
+Get list of most popular albums for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    period: 'overall', // overall | 7day | 1month | 3month | 6month | 12month
+    limit: 10,
+    page: 2
+};
+
+user.getTopAlbums('xxxxname', options).then(res => console.log(res));
+```
+
+##### getTopArtists
+
+Get list of most popular artists for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    period: 'overall', // overall | 7day | 1month | 3month | 6month | 12month
+    limit: 10,
+    page: 2
+};
+
+user.getTopArtists('xxxxname', options).then(res => console.log(res));
+```
+
+##### getTopTags
+
+Get list of most popular tags for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = { limit: 10 };
+
+user.getTopTags('xxxxname', options).then(res => console.log(res));
+```
+
+##### getTopTracks
+
+Get list of most popular tracks for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    period: 'overall', // overall | 7day | 1month | 3month | 6month | 12month
+    limit: 10,
+    page: 2
+};
+
+user.getTopTracks('xxxxname', options).then(res => console.log(res));
+```
+
+##### getWeeklyAlbumChart
+
+Get an album chart for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    from: 1514964785,
+    to: 1514964785
+};
+
+user.getWeeklyAlbumChart('xxxxname', options).then(res => console.log(res));
+```
+
+##### getWeeklyArtistChart
+
+Get an artist chart for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    from: 1514964785,
+    to: 1514964785
+};
+
+user.getWeeklyArtistChart('xxxxname', options).then(res => console.log(res));
+```
+
+##### getWeeklyChartList
+
+Get a list of available charts for this user
+
+```javascript
+const user = require('flastm')(config).user;
+
+user.getWeeklyChartList('xxxxname').then(res => console.log(res));
+```
+
+##### getWeeklyTrackChart
+
+Get a track chart for specified user.
+
+```javascript
+const user = require('flastm')(config).user;
+// Optional
+const options = {
+    from: 1514964785,
+    to: 1514964785
+};
+
+user.getWeeklyTrackChart('xxxxname', options).then(res => console.log(res));
 ```

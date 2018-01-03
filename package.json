@@ -1,6 +1,6 @@
 {
   "name": "flastm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Promise-based JS API for LastFM",
   "author": "sumthief",
   "license": "GPL-2.0",
