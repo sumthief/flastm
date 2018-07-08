@@ -4,3 +4,4 @@ false/
 .vscode/
 .idea/
 coverage/
+package-lock.json

@@ -34,7 +34,7 @@ const generateApiSignature = (params, secret) => {
         .sort()
         .reduce((prev, key) => {
             if (params.hasOwnProperty(key) && !EXCLUDED_KEYS.includes(key)) {
-                prev += `${key}${utf8StringDecoder.end(params[key])}`;
+                prev += `${key}${utf8StringDecoder.end((params[key]).toString())}`;
             }
             return prev;
         }, '');

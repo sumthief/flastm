@@ -715,6 +715,7 @@ tag.getWeeklyChartList('rock').then(res => console.log(res));
 * [unlove](#unlove)
 * [removeTag](#removetag-2)
 * [updateNowPlaying](#updatenowplaying)
+* [scrobble](#scrobble)
 
 ##### getCorrection
 
@@ -975,6 +976,38 @@ auth
             .updateNowPlaying(
                 'Breaking Benjamin',
                 'Dance with Devil',
+                sk,
+                options
+            )
+            .then(res => console.log(res))
+    );
+```
+
+##### scrobble
+
+Used to add a track-play to a user's profile.
+
+```javascript
+const { track, auth } = require('flastm')(config);
+// Optional
+const options = {
+    album: 'Phobia',
+    trackNumber: 1,
+    context: 'see last.fm api for details',
+    mbid: '188ff26f-3892-4443-a981-4d0c395a8377',
+    duration: 251,
+    albumArtist: 'Breaking Benjamin'
+};
+
+auth
+    .getMobileSession()
+    .then(sessionInfo => sessionInfo.session.key)
+    .then(sk =>
+        track
+            .scrobble(
+                'Breaking Benjamin',
+                'Dance with Devil',
+                new Date().getTime()/1000
                 sk,
                 options
             )

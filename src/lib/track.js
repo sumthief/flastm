@@ -101,6 +101,18 @@ module.exports = config => {
                 action: 'updateNowPlaying',
                 sign: true,
                 ...opts
+            }),
+        scrobble: (artist, track, timestamp, sk, opts) =>
+            fetch({
+                ...defaultParams,
+                artist,
+                track,
+                timestamp,
+                sk,
+                method: 'post',
+                action: 'scrobble',
+                sign: true,
+                ...opts
             })
     };
 };
